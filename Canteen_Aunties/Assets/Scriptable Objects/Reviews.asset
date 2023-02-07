@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b290da4adc8201f4e862077fc09bf79f, type: 3}
+  m_Name: Reviews
+  m_EditorClassIdentifier: 
+  twoStarBelowReviews:
+  - I feel so jelat....
+  - <sprite name=ThumbDown>
+  - the mamak outside is better...
+  - I don't feel so good..
+  fiveStarReviews:
+  - Wow best auntie!
+  - <sprite name=ThumbUp>
+  - <sprite name=Fire>
+  - Inilah dikata-kan "LIT"

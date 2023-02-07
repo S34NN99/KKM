@@ -11,6 +11,11 @@ public abstract class Draggable : MonoBehaviour
 
     public virtual void OnMouseDrag() { }
 
+    protected bool CheckPause()
+    {
+        return FindObjectOfType<PauseManager>().IsPaused;
+    }
+
     protected void CollisionSwitch(Collider2D collider, bool power)
     {
         collider.enabled = power;

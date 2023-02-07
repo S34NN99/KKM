@@ -9,10 +9,13 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private float startTimeInSeconds;
     public float StartTimeInSeconds => startTimeInSeconds;
+    [SerializeField] private PyramidCalculator pyramidCal;
     [SerializeField] private float currentTime;
     [SerializeField] private Image clockUI;
 
-    private void Start()
+    private float angle;
+
+    private void Awake()
     {
         currentTime = StartTimeInSeconds;
     }
@@ -24,11 +27,17 @@ public class Timer : MonoBehaviour
             currentTime -= Time.deltaTime;
             UpdateUI(currentTime);
         }
+        else
+        {
+            pyramidCal.OnGameEnd?.Invoke();
+        }
     }
+
     //rotate around localrotation z axis
     void UpdateUI(float time)
     {
-        transform.localRotation = Quaternion.Euler(0, 0, time);
+        angle = 360/(StartTimeInSeconds/time);
+        clockUI.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(0, angle, currentTime));
     }
 }
 

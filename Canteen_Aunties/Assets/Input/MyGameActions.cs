@@ -24,7 +24,7 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                     ""id"": ""4a778566-6739-4bb0-b456-39515e1a897d"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)""
+                    ""interactions"": ""Hold""
                 },
                 {
                     ""name"": ""Plate DoubleTap W"",
@@ -54,14 +54,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                     ""name"": ""Plate S"",
                     ""type"": ""Button"",
                     ""id"": ""221dc6f5-07d6-45b3-bd55-ac189b64a0ee"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""e71e2278-6561-4f4d-98a8-035e8f223bc4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -144,17 +136,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                     ""action"": ""PlateMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3339c506-9b99-475f-89dc-af30b5f0f98f"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,7 +210,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         m_Player_PlateDoubleTapS = m_Player.FindAction("Plate DoubleTap S", throwIfNotFound: true);
         m_Player_PlateW = m_Player.FindAction("Plate W", throwIfNotFound: true);
         m_Player_PlateS = m_Player.FindAction("Plate S", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,7 +264,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PlateDoubleTapS;
     private readonly InputAction m_Player_PlateW;
     private readonly InputAction m_Player_PlateS;
-    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @MyGameActions m_Wrapper;
@@ -294,7 +273,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         public InputAction @PlateDoubleTapS => m_Wrapper.m_Player_PlateDoubleTapS;
         public InputAction @PlateW => m_Wrapper.m_Player_PlateW;
         public InputAction @PlateS => m_Wrapper.m_Player_PlateS;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -319,9 +297,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                 @PlateS.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateS;
                 @PlateS.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateS;
                 @PlateS.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateS;
-                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -341,9 +316,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                 @PlateS.started += instance.OnPlateS;
                 @PlateS.performed += instance.OnPlateS;
                 @PlateS.canceled += instance.OnPlateS;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -400,6 +372,5 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         void OnPlateDoubleTapS(InputAction.CallbackContext context);
         void OnPlateW(InputAction.CallbackContext context);
         void OnPlateS(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
     }
 }

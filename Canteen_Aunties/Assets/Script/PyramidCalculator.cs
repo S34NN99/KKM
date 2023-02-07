@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public enum ReviewResponses
 {
@@ -37,34 +38,20 @@ public class PlateServed
     public PlateServed(Dictionary<Category, WeightageScoring> dish)
     {
         //Check if dish is good or not
-        Debug.Log("Added to Plate Served");
-        ReviewPlate(dish);
+        plateEvaluation = ReviewPlate(dish);
     }
 
+    //Check if plate is good or not here
     private PlateEvaluation ReviewPlate(Dictionary<Category, WeightageScoring> dish)
     {
-        int counter = 0;
-
         foreach(var dictionary in dish)
         {
-            Debug.Log($"{dictionary.Key} is {dictionary.Value.Review} and {dictionary.Value.Score}");
-            if(dictionary.Value.Review == ReviewResponses.Green)
+            if(dictionary.Value.Review != ReviewResponses.Green)
             {
-                Debug.Log(dictionary.Key + " is Green");
-                counter++;
+                return PlateEvaluation.Bad;
             }
         }
-
-        if(counter >= 2)
-        {
-            Debug.Log("Good dish");
-            return PlateEvaluation.Good;
-        }
-        else
-        {
-            Debug.Log("Bad dish");
-            return PlateEvaluation.Bad;
-        }
+        return PlateEvaluation.Perfect;
     }
 }
 
@@ -76,8 +63,8 @@ public class PyramidCalculator : MonoBehaviour
     {
         {Category.OilsAndFats, 2},
         { Category.Carb, 12},
-        { Category.Dairy, 12},
-        { Category.Fruit, 12},
+        { Category.Dairy, 6},
+        { Category.Fruit, 6},
         { Category.Protein, 12},
         { Category.Vege, 18}
     };
@@ -110,46 +97,74 @@ public class PyramidCalculator : MonoBehaviour
             currentAmountServed = value;
             if (currentAmountServed >= TargetAmountForPlateServe)
             {
-                Debug.Log("Limit reached");
+                OnGameEnd?.Invoke();
             }
 
             trackerText.text = $"{currentAmountServed} / {TargetAmountForPlateServe}";
         }
     }
 
+    [Space(10)]
+    [SerializeField] private StudentRequest studentRequest;
+    [SerializeField] private StatisticTracker st;
+    [SerializeField] private GameObject endGameScene;
+
+    public Action OnGameEnd;
     public Action OnServePlate;
 
     private void Start()
     {
-        OnServePlate += () => CurrentAmountServed++;
+        CurrentAmountServed = 0;
+
         OnServePlate += () => plateServedTracker.Add(new PlateServed(CurrentWeightage));
         OnServePlate += ResetWeightage;
+        OnServePlate += () => CurrentAmountServed++;
+
+        OnGameEnd += () => endGameScene.SetActive(true);
+        OnGameEnd += () => st.AddToStatisticDictionary(st.Healthy_Students, AmountOfGoodPlates());
+        OnGameEnd += () => st.AddToStatisticDictionary(st.Meal_Requirement, AmountOfGoodPlates());
+        OnGameEnd += () => st.AddToStatisticDictionary(st.Student_Preferences, studentRequest.SuccessfulServingCounter);
+        OnGameEnd += () => st.PeformStarCalculations(TargetAmountForPlateServe);
+        
+        OnGameEnd += st.UpdateStatsToDatabase;
+        OnGameEnd += () => FindObjectOfType<PauseManager>().Pause();
     }
 
     #region Pyramid 
     //MAke Action argument to update ReviewResponses and UIs
     public void UpdatePyramidCalculation(Category cat)
     {
-        float value = CompareWeightage(cat);
+        if(cat == Category.OilsAndFats)
+        {
+            if (IsBetween(CurrentWeightage[cat].Score, 1, RecommendedWeightage[cat]))
+            {
+                CurrentWeightage[cat].Review = ReviewResponses.Green;
+                poster.OnUIUpdate?.Invoke(Color.green, cat);
+            }
+            else
+            {
+                CurrentWeightage[cat].Review = ReviewResponses.Red;
+                poster.OnUIUpdate?.Invoke(Color.red, cat);
+            }
+            return;
+        }
 
+        float value = CompareWeightage(cat);
         if(value == 1)
         {
             //Perfect make it green;
-            Debug.Log("Perfect");
             CurrentWeightage[cat].Review = ReviewResponses.Green;
             poster.OnUIUpdate?.Invoke(Color.green, cat);
         }
         else if(value < 1)
         {
             //make it gray
-            Debug.Log("Need more");
-            CurrentWeightage[cat].Review = ReviewResponses.Grey;
-            poster.OnUIUpdate?.Invoke(Color.black, cat);
+            //CurrentWeightage[cat].Review = ReviewResponses.Grey;
+            //poster.OnUIUpdate?.Invoke(Color.black, cat);
         }
-        else
+        else 
         {
             //make it red
-            Debug.Log("Too much");
             CurrentWeightage[cat].Review = ReviewResponses.Red;
             poster.OnUIUpdate?.Invoke(Color.red, cat);
         }
@@ -173,13 +188,17 @@ public class PyramidCalculator : MonoBehaviour
         return value;
     }
 
+    private bool IsBetween(float currentValue, float value1, float value2)
+    {
+        return (currentValue >= Math.Min(value1, value2) && currentValue <= Math.Max(value1, value2));
+    }
+
 
     #endregion
 
     #region Plate Serve Tracker
     private List<PlateServed> plateServedTracker = new List<PlateServed>();
     [SerializeField] private Text trackerText;
-
 
     public void ResetWeightage()
     {
@@ -192,6 +211,19 @@ public class PyramidCalculator : MonoBehaviour
             { Category.Protein, new WeightageScoring()},
             { Category.Vege, new WeightageScoring()}
         };
+    }
+
+    private int AmountOfGoodPlates()
+    {
+        int counter = 0;
+
+        foreach(PlateServed ps in plateServedTracker)
+        {
+            if (ps.plateEvaluation == PlateServed.PlateEvaluation.Perfect)
+                counter++;
+        }
+
+        return counter;
     }
 
     #endregion

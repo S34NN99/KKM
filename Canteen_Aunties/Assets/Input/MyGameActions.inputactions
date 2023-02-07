@@ -11,7 +11,7 @@
                     "id": "4a778566-6739-4bb0-b456-39515e1a897d",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Press(behavior=1)"
+                    "interactions": "Hold"
                 },
                 {
                     "name": "Plate DoubleTap W",
@@ -41,14 +41,6 @@
                     "name": "Plate S",
                     "type": "Button",
                     "id": "221dc6f5-07d6-45b3-bd55-ac189b64a0ee",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "e71e2278-6561-4f4d-98a8-035e8f223bc4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -131,17 +123,6 @@
                     "action": "PlateMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "3339c506-9b99-475f-89dc-af30b5f0f98f",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

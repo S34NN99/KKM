@@ -7,8 +7,7 @@ public class Latter : MonoBehaviour
 {
     public static Latter instance = null;
 
-    [SerializeField] private GameObject ingredientPlaceholder;
-    public GameObject IngredientPlaceholder => ingredientPlaceholder;
+    public SpriteRenderer cursorSprite;
 
     private Ingredient currentIngredient;
     public Ingredient CurrentIngredient
@@ -16,8 +15,6 @@ public class Latter : MonoBehaviour
         get { return currentIngredient; }
         set { currentIngredient = value; }
     }
-
-    public int CurrentAmount;
 
     private void Awake()
     {

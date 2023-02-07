@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Plate
   - Latter
+  - Student
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - ExpandableArea
+  - Settings
   - Ingredient
   - 
   - 
