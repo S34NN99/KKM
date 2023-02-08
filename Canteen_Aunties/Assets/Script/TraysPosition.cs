@@ -26,17 +26,6 @@ public class TraysPosition : MonoBehaviour
     {
         playerInput = new MyGameActions();
         playerInput.Enable();
-
-        //Camera cam = Camera.main;
-        //float height = 2f * cam.orthographicSize;
-        //float width = (height * cam.aspect)/2;
-
-        //for (int i = 0; i < NumberOfTrays; i++)
-        //{
-        //    GameObject child1 = this.gameObject.transform.GetChild(i).gameObject;
-        //    float x = -width + (Spacing * i);
-        //    child1.transform.position = new Vector2(x + 4.5f, Height);
-        //}
     }
 
     private void Update()

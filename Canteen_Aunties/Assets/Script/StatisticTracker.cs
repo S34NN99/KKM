@@ -155,6 +155,9 @@ public class StatisticTracker : MonoBehaviour
     {
         TableStorageClient client = FindObjectOfType<TableStorageClient>();
 
+        if (client.CurrentUser.PartitionKey == null)
+            return;
+
         Stats stats = new Stats();
         ConvertStatsToTableEntity(stats, statistics);
 

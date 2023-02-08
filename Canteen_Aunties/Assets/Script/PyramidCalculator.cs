@@ -63,7 +63,7 @@ public class PyramidCalculator : MonoBehaviour
     {
         {Category.OilsAndFats, 2},
         { Category.Carb, 12},
-        { Category.Dairy, 6},
+        { Category.Dairy, 6}, //this is not being counter to plate TotalWeightage, it is use to track Pyramid Calculation
         { Category.Fruit, 6},
         { Category.Protein, 12},
         { Category.Vege, 18}

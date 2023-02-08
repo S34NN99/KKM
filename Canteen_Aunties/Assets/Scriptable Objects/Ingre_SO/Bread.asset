@@ -17,3 +17,5 @@ MonoBehaviour:
   category: 3
   hasFats: 0
   weightage: 6
+  ingredientTray: {fileID: 9090422874600473003, guid: fe997bdd5d5896148830066f5c570366,
+    type: 3}

@@ -13,7 +13,8 @@ public class User : TableEntity
     public User() : base() { }
 
     public Titles Title = Titles.Student;
-    public string SchoolAndClass;
+
+    public  string SchoolAndClass;
 
     private void SplitText(string partitionKey)
     {
@@ -40,6 +41,7 @@ public class StorageUIScript : MonoBehaviour
 
     public Action OnStudentLogin;
     public Action OnTeacherLogin;
+    public Action OnAnomyousLogin;
 
     public string UserID
     {
@@ -84,6 +86,14 @@ public class StorageUIScript : MonoBehaviour
 
         OnTeacherLogin += () => StatusText.text = "Teacher Login Succesful";
         OnTeacherLogin += () => SceneManager.LoadScene("TeacherMainMenu");
+
+        OnAnomyousLogin += () => SceneManager.LoadScene("MainMenu");
+    }
+
+    public void AnomynousLogin()
+    {
+        TableStorageClient.Instance.CurrentUser = new User();
+        OnAnomyousLogin?.Invoke();
     }
 
     private void ShowError(string error)
@@ -95,7 +105,10 @@ public class StorageUIScript : MonoBehaviour
     private bool Verification(User userInput, User dataBaseInput)
     {
         if (userInput.SchoolAndClass != dataBaseInput.SchoolAndClass)
+        {
+            Debug.Log($"school and class {userInput.SchoolAndClass} user input and {dataBaseInput.SchoolAndClass} database");
             return false;
+        }
 
         if (userInput.PartitionKey != dataBaseInput.PartitionKey)
             return false;
@@ -119,9 +132,10 @@ public class StorageUIScript : MonoBehaviour
                  if (Globals.DebugFlag)  Debug.Log(status);
                  foreach (var item in queryTableResponse.Result)
                  {
+                     Debug.Log(string.Format("Item with PartitionKey {0} and RowKey {1} and school {2}", item.PartitionKey, item.RowKey, item.SchoolAndClass));
                      if (Verification(user, item))
                      {
-                         Debug.Log(string.Format("Item with PartitionKey {0} and RowKey {1}", item.PartitionKey, item.RowKey));
+                         Debug.Log("Successful login");
                          //Login here
                          TableStorageClient.Instance.CurrentUser = item;
 
@@ -133,7 +147,7 @@ public class StorageUIScript : MonoBehaviour
                          return;
                      }
                  }
-                 StatusText.text = "Login Unsuccesful";
+                 //StatusText.text = "Login Unsuccesful";
              }
              else
              {

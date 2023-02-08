@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
-  m_Name: Meat
+  m_Name: Chicken
   m_EditorClassIdentifier: 
   ingredientName: 
   sprite: {fileID: 21300000, guid: 9c20a032536916f4cb0bfe50f374173f, type: 3}
   category: 2
   hasFats: 1
   weightage: 12
+  ingredientTray: {fileID: 3066778149844261179, guid: 5b788ae7a43ebac4b84391ed00718e72,
+    type: 3}

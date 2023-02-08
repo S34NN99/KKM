@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
+  m_Name: Taugeh
+  m_EditorClassIdentifier: 
+  ingredientName: 
+  sprite: {fileID: 21300000, guid: 2d354bf1b8759214f8719523b6c30aa2, type: 3}
+  category: 4
+  hasFats: 1
+  weightage: 6
+  ingredientTray: {fileID: 212523968840524775, guid: 78df1918c00901148b4abc5b73a481a7,
+    type: 3}

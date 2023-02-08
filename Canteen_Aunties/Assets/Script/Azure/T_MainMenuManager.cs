@@ -12,12 +12,12 @@ public class T_MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject toBeParent;
     [SerializeField] private TMP_InputField codeToBeSearch;
 
-
-    public Action<User> OnNewUser;
+    private TableStorageClient client;
+    public Action<User> DisplayUser;
 
     private void Start()
     {
-        OnNewUser += (user) =>
+        DisplayUser += (user) =>
         {
             GameObject newGo = Instantiate(studentInfoPrefab, toBeParent.transform);
             StudentInfoUIScript studentUIscript = newGo.GetComponent<StudentInfoUIScript>();
@@ -26,7 +26,8 @@ public class T_MainMenuManager : MonoBehaviour
             studentUIscript.nameText.text = user.PartitionKey;
         };
 
-        //GetStudentData();
+        client = FindObjectOfType<TableStorageClient>();
+        GetStudentData();
     }
 
     public void GetStudentData()
@@ -34,12 +35,13 @@ public class T_MainMenuManager : MonoBehaviour
         Clear();
         TableQuery tq = new TableQuery()
         {
-            select = "PartitionKey, SchoolAndClass, RowKey"
+            select = "PartitionKey, RowKey, SchoolAndClass"
         };
 
         //Insert inputfield here and make it search the class
 
-        TableStorageClient.Instance.QueryTable<User>(tq, codeToBeSearch.text, queryTableResponse =>
+        //TableStorageClient.Instance.QueryTable<User>(tq, codeToBeSearch.text, queryTableResponse =>
+        TableStorageClient.Instance.QueryTable<User>(tq, client.CurrentUser.SchoolAndClass, queryTableResponse =>
         {
             if (queryTableResponse.Status == CallBackResult.Success)
             {
@@ -48,7 +50,7 @@ public class T_MainMenuManager : MonoBehaviour
                 foreach (var item in queryTableResponse.Result)
                 {
                     Debug.Log(string.Format("Item with PartitionKey {0} and RowKey {1}", item.PartitionKey, item.RowKey));
-                    OnNewUser?.Invoke(item);
+                    DisplayUser?.Invoke(item);
                 }
             }
         });

@@ -23,5 +23,8 @@ public class Ingredient : ScriptableObject
 
     [SerializeField] private int weightage;
     public int Weightage => weightage;
+
+    [SerializeField] private GameObject ingredientTray;
+    public GameObject IngredientTray => ingredientTray;
 }
 

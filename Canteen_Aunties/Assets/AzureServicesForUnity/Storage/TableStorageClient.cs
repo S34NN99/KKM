@@ -28,6 +28,7 @@ namespace AzureServicesForUnity.Shared
 
         [HideInInspector]
         public string SASToken;
+        private string sasToken = "?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-02-28T01:19:32Z&st=2023-02-08T17:19:32Z&spr=https&sig=lbV1QiN9Y0coLd%2FhKGO1phrwtV1XhcX9ILBVx4j8Bn8%3D";
 
         [HideInInspector]
         public EndpointStorageType EndpointStorageType = EndpointStorageType.TableStorage;
@@ -45,7 +46,7 @@ namespace AzureServicesForUnity.Shared
             }
 
             Instance.SetAccountName("kindlinginteractive");
-            Instance.SASToken = "?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-02-01T12:22:52Z&st=2023-01-27T04:22:52Z&spr=https&sig=fTxzAykUYiVGT%2F0FTsq2jzRmCO3NtN80KMWBKU8S70g%3D";
+            Instance.SASToken = sasToken;
         }
 
         private string Url;

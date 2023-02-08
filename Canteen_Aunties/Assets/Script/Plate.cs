@@ -77,7 +77,6 @@ public class Plate : MonoBehaviour
         OnStudentServed += studentRequest.UpdateRequest;
         OnStudentServed += () => studentRequest.StudentAnimator.SetTrigger("NextStudent");
         OnStudentServed += () => score.UpdateScoreToDatabase(score);
-        
     }
 
     public void DisablePlateFullAnimation()
