@@ -28,6 +28,15 @@ public class StudentRequest : MonoBehaviour
         return requestedIngredient;
     }
 
+    #region Jump Randomizer
+    public void JumpRandomizer()
+    {
+        float randomNum = UnityEngine.Random.Range(0.0f, 1.0f);
+        if (randomNum <= 0.4f)
+            StudentAnimator.SetTrigger("IsJumping");
+    }
+    #endregion
+
     #region Update Request
     public void UpdateRequest()
     {

@@ -100,6 +100,7 @@ public class PyramidCalculator : MonoBehaviour
                 OnGameEnd?.Invoke();
             }
 
+            trackerAnimator.SetTrigger("IsChanged");
             trackerText.text = $"{currentAmountServed} / {TargetAmountForPlateServe}";
         }
     }
@@ -199,6 +200,7 @@ public class PyramidCalculator : MonoBehaviour
     #region Plate Serve Tracker
     private List<PlateServed> plateServedTracker = new List<PlateServed>();
     [SerializeField] private Text trackerText;
+    [SerializeField] private Animator trackerAnimator;
 
     public void ResetWeightage()
     {

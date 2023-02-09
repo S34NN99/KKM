@@ -23,7 +23,6 @@ public class Menu : MonoBehaviour
     [SerializeField] private List<Ingredient> todayMenus = new List<Ingredient>();
     public List<Ingredient> TodayMenus => todayMenus;
 
-
     [Header("Tray")]
     [Space(10)]
     [SerializeField] private GameObject trayParent;
@@ -55,20 +54,47 @@ public class Menu : MonoBehaviour
         GetIngredient(Category.Vege, 1, ref todayMenus);
         GetIngredient(Category.Fruit, 1, ref todayMenus);
         GetIngredient(Category.Dairy, 1, ref todayMenus);
-
     }
 
     #region Conditions
     private void GetIngredient(Category cat, int num, ref List<Ingredient> ingredientsListed)
     {
-        List<Ingredient> temp = sortedIngredients[cat];
+        List<Ingredient> ingredientList = sortedIngredients[cat];
+
+        if (cat == Category.Carb)
+        {
+            List<Ingredient> temp = ingredientList;
+
+            for (int i = 0; i < ingredientList.Count; i++)
+            {
+                foreach(Ingredient ingredient in NotOnTray)
+                {
+                    //if(temp[i] == ingredient)
+
+                }
+            }
+        }
 
         for(int i = 0; i < num; i++)
         {
-            int randomNum = Random.Range(0, temp.Count);
-            ingredientsListed.Add(temp[randomNum]);
-            temp.RemoveAt(randomNum);
+            int randomNum = Random.Range(0, ingredientList.Count);
+            ingredientsListed.Add(ingredientList[randomNum]);
+            ingredientList.RemoveAt(randomNum);
         }
+    }
+
+    private void GetCarbBelowTable(ref List<Ingredient> ingredientsListed)
+    {
+        List<Ingredient> temp = new List<Ingredient>();
+
+        foreach(Ingredient ingredient in NotOnTray)
+        {
+            if(ingredient.Category == Category.Carb)
+            temp.Add(ingredient);
+        }
+
+        int random = Random.Range(0, temp.Count);
+        ingredientsListed.Add(temp[random]);
     }
     #endregion
 

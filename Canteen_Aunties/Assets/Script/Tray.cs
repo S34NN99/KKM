@@ -1,16 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Tray : Draggable
 {
+    private Plate plate;
+    public Plate Plate => plate;
+
     [SerializeField] private Ingredient currentIngredient;
     public Ingredient CurrentIngredient => currentIngredient;
-    private Plate plate;
+
+    [SerializeField] private Animator _animator;
+    public Animator _Animator => _animator;
+    
+    [SerializeField] private ParticleSystem ps;
+    public ParticleSystem PS => ps;
+
+    public Action OnClickTray;
 
     private void Start()
     {
         plate = FindObjectOfType<Plate>();
+
+        OnClickTray += () => _Animator.SetTrigger("IsClick");
+        OnClickTray += () => PS.Play();
     }
 
     public override void OnMouseDown()
@@ -20,6 +34,8 @@ public class Tray : Draggable
             IngredientManager.instance.ChangeCursor(CurrentIngredient);
             IngredientManager.instance.ChangeIngredientSpriteOnLatter(CurrentIngredient);
             Latter.instance.AddToLatter(CurrentIngredient);
+
+            OnClickTray?.Invoke();
         }
     }
 
@@ -47,13 +63,13 @@ public class Tray : Draggable
                 return;
             }
 
-            if (plate.CheckWeightage(CurrentIngredient))
+            if (Plate.CheckWeightage(CurrentIngredient))
             {
-                plate.OnAddIngredient?.Invoke(CurrentIngredient);
+                Plate.OnAddIngredient?.Invoke(CurrentIngredient);
             }
             else
             {
-                plate.OnPlateFull?.Invoke();
+                Plate.OnPlateFull?.Invoke();
             }
 
         }
@@ -61,7 +77,7 @@ public class Tray : Draggable
         {
             if (hit.collider.CompareTag("Student"))
             {
-                plate.OnGiveDairy?.Invoke(CurrentIngredient);
+                Plate.OnGiveDairy?.Invoke(CurrentIngredient);
             }
         }
     }

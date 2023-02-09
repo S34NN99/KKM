@@ -26,5 +26,8 @@ public class Ingredient : ScriptableObject
 
     [SerializeField] private GameObject ingredientTray;
     public GameObject IngredientTray => ingredientTray;
+
+    [SerializeField] private Sprite traySprite;
+    public Sprite TraySprite => traySprite;
 }
 

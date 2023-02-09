@@ -12,11 +12,11 @@ public class BlackBoard : MonoBehaviour
 
     public void DisplayIngredient(BlackBoardIngredients bbIngredient)
     {
-        image.sprite = bbIngredient.Ingredient.Sprite;
+        image.sprite = bbIngredient.Ingredient.TraySprite;
         category.text = bbIngredient.Ingredient.Category.ToString();
         weightage.text = bbIngredient.Ingredient.Weightage.ToString();
         additionalInfo.text = bbIngredient.Ingredient.IngredientName;
 
-        image.GetComponent<RectTransform>().sizeDelta = new Vector2(bbIngredient.Ingredient.Sprite.rect.width, bbIngredient.Ingredient.Sprite.rect.height);
+        image.GetComponent<RectTransform>().sizeDelta = new Vector2(bbIngredient.Ingredient.TraySprite.rect.width, bbIngredient.Ingredient.TraySprite.rect.height);
     }
 }

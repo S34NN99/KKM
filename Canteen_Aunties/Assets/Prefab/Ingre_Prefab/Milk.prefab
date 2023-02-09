@@ -62,6 +62,21 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 5483654472232193106, guid: f83f7b1e15357a34ca148f7bcc8adc6c,
         type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483654472232193106, guid: f83f7b1e15357a34ca148f7bcc8adc6c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483654472232193106, guid: f83f7b1e15357a34ca148f7bcc8adc6c,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483654472232193106, guid: f83f7b1e15357a34ca148f7bcc8adc6c,
+        type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
