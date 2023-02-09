@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public enum ReviewResponses
 {
     None,
-    Grey,
     Green,
     Red
 }
@@ -20,7 +19,7 @@ public class WeightageScoring
     public WeightageScoring()
     {
         Score = 0;
-        Review = ReviewResponses.None;
+        Review = ReviewResponses.Red;
     }
 }
 
@@ -81,7 +80,7 @@ public class PyramidCalculator : MonoBehaviour
         { Category.Vege, new WeightageScoring()}
     };
 
-    public Dictionary<Category, WeightageScoring> CurrentWeightage
+    public Dictionary<Category, WeightageScoring> CurrentWeightageScore
     { 
         get { return currentWeightage; }
         private set { currentWeightage = value; }
@@ -117,7 +116,7 @@ public class PyramidCalculator : MonoBehaviour
     {
         CurrentAmountServed = 0;
 
-        OnServePlate += () => plateServedTracker.Add(new PlateServed(CurrentWeightage));
+        OnServePlate += () => plateServedTracker.Add(new PlateServed(CurrentWeightageScore));
         OnServePlate += ResetWeightage;
         OnServePlate += () => CurrentAmountServed++;
 
@@ -133,20 +132,22 @@ public class PyramidCalculator : MonoBehaviour
 
     #region Pyramid 
     //MAke Action argument to update ReviewResponses and UIs
+    private void UpdatePyramidCalculationForOilsAndFats(Category cat)
+    {
+        float value;
+        if (IsBetween(CurrentWeightageScore[cat].Score, 1, RecommendedWeightage[cat], cat, out value))
+        {
+            CurrentWeightageScore[cat].Review = ReviewResponses.Green;
+        }
+
+        poster.OnUIUpdate?.Invoke(cat, value);
+    }
+
     public void UpdatePyramidCalculation(Category cat)
     {
         if(cat == Category.OilsAndFats)
         {
-            if (IsBetween(CurrentWeightage[cat].Score, 1, RecommendedWeightage[cat]))
-            {
-                CurrentWeightage[cat].Review = ReviewResponses.Green;
-                poster.OnUIUpdate?.Invoke(Color.green, cat);
-            }
-            else
-            {
-                CurrentWeightage[cat].Review = ReviewResponses.Red;
-                poster.OnUIUpdate?.Invoke(Color.red, cat);
-            }
+            UpdatePyramidCalculationForOilsAndFats(cat);   
             return;
         }
 
@@ -154,47 +155,35 @@ public class PyramidCalculator : MonoBehaviour
         if(value == 1)
         {
             //Perfect make it green;
-            CurrentWeightage[cat].Review = ReviewResponses.Green;
-            poster.OnUIUpdate?.Invoke(Color.green, cat);
+            CurrentWeightageScore[cat].Review = ReviewResponses.Green;
         }
-        else if(value < 1)
-        {
-            //make it gray
-            //CurrentWeightage[cat].Review = ReviewResponses.Grey;
-            //poster.OnUIUpdate?.Invoke(Color.black, cat);
-        }
-        else 
-        {
-            //make it red
-            CurrentWeightage[cat].Review = ReviewResponses.Red;
-            poster.OnUIUpdate?.Invoke(Color.red, cat);
-        }
+
+        poster.OnUIUpdate?.Invoke(cat, value);
     }
 
     public void AddToCurrentCalculator(Ingredient ingredient)
     {
         if (ingredient.HasFats)
         {
-            CurrentWeightage[Category.OilsAndFats].Score++;
+            CurrentWeightageScore[Category.OilsAndFats].Score++;
             UpdatePyramidCalculation(Category.OilsAndFats);
         }
 
-        CurrentWeightage[ingredient.Category].Score += ingredient.Weightage;
+        CurrentWeightageScore[ingredient.Category].Score += ingredient.Weightage;
         UpdatePyramidCalculation(ingredient.Category);
     }
 
     private float CompareWeightage(Category cat)
     {
-        float value = (float)CurrentWeightage[cat].Score / (float)RecommendedWeightage[cat];
+        float value = (float)CurrentWeightageScore[cat].Score / (float)RecommendedWeightage[cat];
         return value;
     }
 
-    private bool IsBetween(float currentValue, float value1, float value2)
+    private bool IsBetween(float currentValue, float value1, float value2, Category cat, out float value)
     {
+        value = CompareWeightage(cat);
         return (currentValue >= Math.Min(value1, value2) && currentValue <= Math.Max(value1, value2));
     }
-
-
     #endregion
 
     #region Plate Serve Tracker
@@ -204,7 +193,7 @@ public class PyramidCalculator : MonoBehaviour
 
     public void ResetWeightage()
     {
-        CurrentWeightage = new Dictionary<Category, WeightageScoring>()
+        CurrentWeightageScore = new Dictionary<Category, WeightageScoring>()
         {
             { Category.OilsAndFats, new WeightageScoring()},
             { Category.Carb, new WeightageScoring()},

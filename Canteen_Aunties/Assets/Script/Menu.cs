@@ -49,33 +49,43 @@ public class Menu : MonoBehaviour
     //Determine which items get to be in the menu here
     private void RandomizeTodayMenu()
     {
-        GetIngredient(Category.Carb, 2, ref todayMenus);
+        GetCarbBelowTable(ref todayMenus);
+        GetIngredient(Category.Carb, 1, ref todayMenus);
         GetIngredient(Category.Protein, 1, ref todayMenus);
         GetIngredient(Category.Vege, 1, ref todayMenus);
         GetIngredient(Category.Fruit, 1, ref todayMenus);
         GetIngredient(Category.Dairy, 1, ref todayMenus);
+        ShuffleMenuList(ref todayMenus);
     }
 
     #region Conditions
     private void GetIngredient(Category cat, int num, ref List<Ingredient> ingredientsListed)
     {
-        List<Ingredient> ingredientList = sortedIngredients[cat];
+        List<Ingredient> ingredientList = new List<Ingredient>();
 
-        if (cat == Category.Carb)
+        if (cat.Equals(Category.Carb))
         {
-            List<Ingredient> temp = ingredientList;
-
-            for (int i = 0; i < ingredientList.Count; i++)
+            List<Ingredient> tempList = sortedIngredients[cat];
+            foreach(Ingredient ing in tempList)
             {
-                foreach(Ingredient ingredient in NotOnTray)
+                bool isInList = false;
+                for(int i = 0; i < NotOnTray.Count; i++)
                 {
-                    //if(temp[i] == ingredient)
-
+                    if (ing == NotOnTray[i])
+                    {
+                        isInList = true;
+                        break;
+                    }
                 }
+
+                if (!isInList)
+                    ingredientList.Add(ing);
             }
         }
+        else
+            ingredientList = sortedIngredients[cat];
 
-        for(int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
             int randomNum = Random.Range(0, ingredientList.Count);
             ingredientsListed.Add(ingredientList[randomNum]);
@@ -96,6 +106,18 @@ public class Menu : MonoBehaviour
         int random = Random.Range(0, temp.Count);
         ingredientsListed.Add(temp[random]);
     }
+
+    private void ShuffleMenuList(ref List<Ingredient> ingredientsListed)
+    {
+        for (int i = 0; i < ingredientsListed.Count; i++)
+        {
+            var temp = ingredientsListed[i];
+            int randomIndex = Random.Range(i, ingredientsListed.Count);
+            ingredientsListed[i] = ingredientsListed[randomIndex];
+            ingredientsListed[randomIndex] = temp;
+        }
+    }
+
     #endregion
 
     #region Add Trays To Game Scene

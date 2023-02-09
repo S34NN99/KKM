@@ -10,6 +10,7 @@ public class StudentRequest : MonoBehaviour
     [SerializeField] private Menu menu;
     [SerializeField] private StatisticTracker tracker;
     [SerializeField] private Image ingredientRequestedImage;
+    [SerializeField] private RectTransform ingredientRect;
 
     private Ingredient currentRequestedIngredient;
 
@@ -42,6 +43,7 @@ public class StudentRequest : MonoBehaviour
     {
         currentRequestedIngredient = RandomNextStudentRequest();
         ingredientRequestedImage.sprite = currentRequestedIngredient.Sprite;
+        ingredientRect.sizeDelta = new Vector2(currentRequestedIngredient.Sprite.rect.width, currentRequestedIngredient.Sprite.rect.height);
     }
 
     private bool CheckRequestRequirement(List<Ingredient> ingredients)

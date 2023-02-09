@@ -55,6 +55,7 @@ public class Plate : MonoBehaviour
         {
             studentHand.enabled = true;
             studentHand.sprite = ingredient.Sprite;
+            studentHand.GetComponent<RectTransform>().sizeDelta = new Vector2(ingredient.Sprite.rect.width, ingredient.Sprite.rect.height);
         };
 
         OnGiveDairy += (ingredient) => ingredientList.Add(ingredient);
