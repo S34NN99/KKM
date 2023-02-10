@@ -3022,7 +3022,6 @@ MonoBehaviour:
   - {fileID: 1735766690}
   - {fileID: 1207752274}
   - {fileID: 1679782530}
-  defaultColor: {r: 0.754717, g: 0.7234388, b: 0.16731933, a: 1}
 --- !u!1 &481776972
 GameObject:
   m_ObjectHideFlags: 0
