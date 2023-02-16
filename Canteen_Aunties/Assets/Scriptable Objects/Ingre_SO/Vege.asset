@@ -19,3 +19,4 @@ MonoBehaviour:
   weightage: 6
   ingredientTray: {fileID: 6721704900021053168, guid: cd81a20fc757a984187f89409289e56d,
     type: 3}
+  traySprite: {fileID: 21300000, guid: 228f8efa780f96d4eaa6a40ea8a03c0c, type: 3}

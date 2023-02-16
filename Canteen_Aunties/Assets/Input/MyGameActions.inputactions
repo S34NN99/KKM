@@ -6,14 +6,6 @@
             "id": "53991ebf-f491-4f4c-a798-8df3da30cb64",
             "actions": [
                 {
-                    "name": "PlateMovement",
-                    "type": "Value",
-                    "id": "4a778566-6739-4bb0-b456-39515e1a897d",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "Hold"
-                },
-                {
                     "name": "Plate DoubleTap W",
                     "type": "Button",
                     "id": "a0550b63-59d0-4af0-a6d2-90653ca79d73",
@@ -41,6 +33,22 @@
                     "name": "Plate S",
                     "type": "Button",
                     "id": "221dc6f5-07d6-45b3-bd55-ac189b64a0ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tray A",
+                    "type": "Button",
+                    "id": "c98ce848-cbd9-4326-b533-378e7f9de407",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tray D",
+                    "type": "Button",
+                    "id": "38bd83e1-d045-4cc9-b8fa-bc340387ad7c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -92,37 +100,26 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "f0e3dea7-c652-44b9-af88-3d107c600089",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlateMovement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "left",
-                    "id": "0fc14d7b-d96b-4ba8-9994-a3036a23ba10",
+                    "name": "",
+                    "id": "386a38b8-3ba2-4c7f-b6ec-ace796d940e2",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "PlateMovement",
+                    "groups": "",
+                    "action": "Tray A",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "right",
-                    "id": "3072e713-4891-4861-988f-491aa0ab676e",
+                    "name": "",
+                    "id": "812958ea-c713-4cae-b0c1-1479a3b9eade",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "PlateMovement",
+                    "groups": "",
+                    "action": "Tray D",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

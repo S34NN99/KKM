@@ -10,11 +10,13 @@ public class Plate : MonoBehaviour
     private Animator animator => GetComponent<Animator>();
     private List<Ingredient> ingredientList = new List<Ingredient>();
     private Score score;
+    private StudentRequest studentRequest;
+
 
     [SerializeField] private List<SpriteRenderer> placeholders;
     [SerializeField] private PyramidCalculator calculator;
     [SerializeField] private Poster poster;
-    [SerializeField] private StudentRequest studentRequest;
+    [SerializeField] private StudentRequestUpdate studentRequestUpdate;
     [SerializeField] private PauseManager pauseManager;
 
     [SerializeField] private Image studentHand;
@@ -22,8 +24,11 @@ public class Plate : MonoBehaviour
     [SerializeField] private Color fullPlateColor;
     [SerializeField] private Text resultText; 
 
+
     private int currentWeightage = 0;
     private int maxWeightage = 48;
+
+    public int SuccessfulServingCounter;
 
     public Action<Ingredient> OnAddIngredient;
     public Action<Ingredient> OnGiveDairy;
@@ -77,6 +82,7 @@ public class Plate : MonoBehaviour
         OnStudentServed += () => studentRequest.UpdateRequestRequirement(ingredientList);
         OnStudentServed += studentRequest.UpdateRequest;
         OnStudentServed += () => studentRequest.StudentAnimator.SetTrigger("NextStudent");
+        OnStudentServed += studentRequestUpdate.ShowNextStudent;
         OnStudentServed += () => score.UpdateScoreToDatabase(score);
     }
 
@@ -152,5 +158,11 @@ public class Plate : MonoBehaviour
             resultText.gameObject.SetActive(true);
             resultText.text = "Emptied Plate";
         }
+    }
+
+    public void ChangeStudentRequest(StudentRequest sr, Image image)
+    {
+        studentRequest = sr;
+        studentHand = image;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Menu : MonoBehaviour
 {
@@ -25,18 +26,62 @@ public class Menu : MonoBehaviour
 
     [Header("Tray")]
     [Space(10)]
-    [SerializeField] private GameObject trayParent;
+    [SerializeField] private List<GameObject> trayParents;
+    [SerializeField] private GameObject trayParentPrefab;
+    [SerializeField] private GameObject table;
     [SerializeField] private GameObject dairyParent;
     [SerializeField] private GameObject carbParent;
     [Range(0,20)]
     [SerializeField] private float spacing;
+
+    private int currentTrayPage = 0;
 
     private void Awake()
     {
         SortIngredients();
         RandomizeTodayMenu();
         SpawnTrays();
+        SendOutFirstTray();
     }
+
+    #region Tray Movement
+    private void SendOutFirstTray()
+    {
+        trayParents[0].GetComponent<Animator>().SetTrigger("OnEnterRight");
+    }
+
+    public void NextTray(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            currentTrayPage++;
+            if (currentTrayPage >= trayParents.Count)
+            {
+                currentTrayPage--;
+                return;
+            }
+
+            trayParents[currentTrayPage].GetComponent<Animator>().SetTrigger("OnEnterRight");
+            trayParents[currentTrayPage - 1].GetComponent<Animator>().SetTrigger("OnExitLeft");
+        }
+    }
+
+    public void PreviousTray(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            currentTrayPage--;
+            if (currentTrayPage < 0)
+            {
+                currentTrayPage = 0;
+                return;
+            }
+
+            trayParents[currentTrayPage].GetComponent<Animator>().SetTrigger("OnEnterLeft");
+            trayParents[currentTrayPage + 1].GetComponent<Animator>().SetTrigger("OnExitRight");
+        }
+    }
+    #endregion
 
     private void SortIngredients()
     {
@@ -51,9 +96,9 @@ public class Menu : MonoBehaviour
     {
         GetCarbBelowTable(ref todayMenus);
         GetIngredient(Category.Carb, 1, ref todayMenus);
-        GetIngredient(Category.Protein, 1, ref todayMenus);
-        GetIngredient(Category.Vege, 1, ref todayMenus);
-        GetIngredient(Category.Fruit, 1, ref todayMenus);
+        GetIngredient(Category.Protein, 2, ref todayMenus);
+        GetIngredient(Category.Vege, 2, ref todayMenus);
+        GetIngredient(Category.Fruit, 2, ref todayMenus);
         GetIngredient(Category.Dairy, 1, ref todayMenus);
         ShuffleMenuList(ref todayMenus);
     }
@@ -123,13 +168,26 @@ public class Menu : MonoBehaviour
     #region Add Trays To Game Scene
     private void SpawnTrays()
     {
-        foreach(Ingredient ingredient in TodayMenus)
+        int counter = 0;
+        GameObject newTrayParent = null;
+        foreach (Ingredient ingredient in TodayMenus)
         {
             if (CheckExcludedIngredient(ingredient, NotOnTray))
                 continue;
 
-            GameObject newTray = Instantiate(ingredient.IngredientTray, trayParent.transform);
-            newTray.transform.position = new Vector2(trayParent.transform.position.x + (spacing * (trayParent.transform.childCount - 1)), trayParent.transform.position.y);
+            if (counter == 0)
+            {
+                newTrayParent = Instantiate(trayParentPrefab, table.transform);
+                trayParents.Add(newTrayParent);
+            }
+
+            //Create new prefab object and create it in the parent
+            GameObject newTray = Instantiate(ingredient.IngredientTray, newTrayParent.transform);
+            newTray.transform.position = new Vector2(newTrayParent.transform.position.x + (spacing * (newTrayParent.transform.childCount - 1)), newTrayParent.transform.position.y);
+            counter++;
+
+            if(counter >= 4)
+                counter = 0;
         }
     }
 

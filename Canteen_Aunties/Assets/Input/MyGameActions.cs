@@ -19,14 +19,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
             ""id"": ""53991ebf-f491-4f4c-a798-8df3da30cb64"",
             ""actions"": [
                 {
-                    ""name"": ""PlateMovement"",
-                    ""type"": ""Value"",
-                    ""id"": ""4a778566-6739-4bb0-b456-39515e1a897d"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold""
-                },
-                {
                     ""name"": ""Plate DoubleTap W"",
                     ""type"": ""Button"",
                     ""id"": ""a0550b63-59d0-4af0-a6d2-90653ca79d73"",
@@ -54,6 +46,22 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                     ""name"": ""Plate S"",
                     ""type"": ""Button"",
                     ""id"": ""221dc6f5-07d6-45b3-bd55-ac189b64a0ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tray A"",
+                    ""type"": ""Button"",
+                    ""id"": ""c98ce848-cbd9-4326-b533-378e7f9de407"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tray D"",
+                    ""type"": ""Button"",
+                    ""id"": ""38bd83e1-d045-4cc9-b8fa-bc340387ad7c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -105,37 +113,26 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""f0e3dea7-c652-44b9-af88-3d107c600089"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlateMovement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""0fc14d7b-d96b-4ba8-9994-a3036a23ba10"",
+                    ""name"": """",
+                    ""id"": ""386a38b8-3ba2-4c7f-b6ec-ace796d940e2"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""PlateMovement"",
+                    ""groups"": """",
+                    ""action"": ""Tray A"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""3072e713-4891-4861-988f-491aa0ab676e"",
+                    ""name"": """",
+                    ""id"": ""812958ea-c713-4cae-b0c1-1479a3b9eade"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""PlateMovement"",
+                    ""groups"": """",
+                    ""action"": ""Tray D"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -205,11 +202,12 @@ public class @MyGameActions : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_PlateMovement = m_Player.FindAction("PlateMovement", throwIfNotFound: true);
         m_Player_PlateDoubleTapW = m_Player.FindAction("Plate DoubleTap W", throwIfNotFound: true);
         m_Player_PlateDoubleTapS = m_Player.FindAction("Plate DoubleTap S", throwIfNotFound: true);
         m_Player_PlateW = m_Player.FindAction("Plate W", throwIfNotFound: true);
         m_Player_PlateS = m_Player.FindAction("Plate S", throwIfNotFound: true);
+        m_Player_TrayA = m_Player.FindAction("Tray A", throwIfNotFound: true);
+        m_Player_TrayD = m_Player.FindAction("Tray D", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -259,20 +257,22 @@ public class @MyGameActions : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_PlateMovement;
     private readonly InputAction m_Player_PlateDoubleTapW;
     private readonly InputAction m_Player_PlateDoubleTapS;
     private readonly InputAction m_Player_PlateW;
     private readonly InputAction m_Player_PlateS;
+    private readonly InputAction m_Player_TrayA;
+    private readonly InputAction m_Player_TrayD;
     public struct PlayerActions
     {
         private @MyGameActions m_Wrapper;
         public PlayerActions(@MyGameActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PlateMovement => m_Wrapper.m_Player_PlateMovement;
         public InputAction @PlateDoubleTapW => m_Wrapper.m_Player_PlateDoubleTapW;
         public InputAction @PlateDoubleTapS => m_Wrapper.m_Player_PlateDoubleTapS;
         public InputAction @PlateW => m_Wrapper.m_Player_PlateW;
         public InputAction @PlateS => m_Wrapper.m_Player_PlateS;
+        public InputAction @TrayA => m_Wrapper.m_Player_TrayA;
+        public InputAction @TrayD => m_Wrapper.m_Player_TrayD;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,9 +282,6 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @PlateMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateMovement;
-                @PlateMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateMovement;
-                @PlateMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateMovement;
                 @PlateDoubleTapW.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateDoubleTapW;
                 @PlateDoubleTapW.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateDoubleTapW;
                 @PlateDoubleTapW.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateDoubleTapW;
@@ -297,13 +294,16 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                 @PlateS.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateS;
                 @PlateS.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateS;
                 @PlateS.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlateS;
+                @TrayA.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTrayA;
+                @TrayA.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTrayA;
+                @TrayA.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTrayA;
+                @TrayD.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTrayD;
+                @TrayD.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTrayD;
+                @TrayD.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTrayD;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @PlateMovement.started += instance.OnPlateMovement;
-                @PlateMovement.performed += instance.OnPlateMovement;
-                @PlateMovement.canceled += instance.OnPlateMovement;
                 @PlateDoubleTapW.started += instance.OnPlateDoubleTapW;
                 @PlateDoubleTapW.performed += instance.OnPlateDoubleTapW;
                 @PlateDoubleTapW.canceled += instance.OnPlateDoubleTapW;
@@ -316,6 +316,12 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                 @PlateS.started += instance.OnPlateS;
                 @PlateS.performed += instance.OnPlateS;
                 @PlateS.canceled += instance.OnPlateS;
+                @TrayA.started += instance.OnTrayA;
+                @TrayA.performed += instance.OnTrayA;
+                @TrayA.canceled += instance.OnTrayA;
+                @TrayD.started += instance.OnTrayD;
+                @TrayD.performed += instance.OnTrayD;
+                @TrayD.canceled += instance.OnTrayD;
             }
         }
     }
@@ -367,10 +373,11 @@ public class @MyGameActions : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnPlateMovement(InputAction.CallbackContext context);
         void OnPlateDoubleTapW(InputAction.CallbackContext context);
         void OnPlateDoubleTapS(InputAction.CallbackContext context);
         void OnPlateW(InputAction.CallbackContext context);
         void OnPlateS(InputAction.CallbackContext context);
+        void OnTrayA(InputAction.CallbackContext context);
+        void OnTrayD(InputAction.CallbackContext context);
     }
 }

@@ -8,17 +8,14 @@ public class StudentRequest : MonoBehaviour
     private Animator animator => GetComponentInChildren<Animator>();
     public Animator StudentAnimator => animator;
     [SerializeField] private Menu menu;
-    [SerializeField] private StatisticTracker tracker;
     [SerializeField] private Image ingredientRequestedImage;
     [SerializeField] private RectTransform ingredientRect;
 
     private Ingredient currentRequestedIngredient;
 
-    private int successfulServingCounter;
-    public int SuccessfulServingCounter => successfulServingCounter;
-
     private void Start()
     {
+        menu = FindObjectOfType<Menu>();
         UpdateRequest();
     }
     
@@ -56,9 +53,8 @@ public class StudentRequest : MonoBehaviour
         if(CheckRequestRequirement(listOfIngredients))
         {
             Debug.Log("Successful");
-            successfulServingCounter++;
+            FindObjectOfType<Plate>().SuccessfulServingCounter++;
         }
     }
-
     #endregion
 }

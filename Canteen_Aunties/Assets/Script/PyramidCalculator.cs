@@ -123,7 +123,7 @@ public class PyramidCalculator : MonoBehaviour
         OnGameEnd += () => endGameScene.SetActive(true);
         OnGameEnd += () => st.AddToStatisticDictionary(st.Healthy_Students, AmountOfGoodPlates());
         OnGameEnd += () => st.AddToStatisticDictionary(st.Meal_Requirement, AmountOfGoodPlates());
-        OnGameEnd += () => st.AddToStatisticDictionary(st.Student_Preferences, studentRequest.SuccessfulServingCounter);
+        OnGameEnd += () => st.AddToStatisticDictionary(st.Student_Preferences, FindObjectOfType<Plate>().SuccessfulServingCounter);
         OnGameEnd += () => st.PeformStarCalculations(TargetAmountForPlateServe);
         
         OnGameEnd += st.UpdateStatsToDatabase;

@@ -51,6 +51,7 @@ public class SequentialActionLoop : MonoBehaviour
     public void JumpTo(int pointerPos)
     {
         Counter = pointerPos;
+        FireNextAction();
 
         CheckIfCounterNeedsToReset();
     }
