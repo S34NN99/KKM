@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Plate : MonoBehaviour
 {
@@ -32,8 +33,15 @@ public class Plate : MonoBehaviour
 
     public Action<Ingredient> OnAddIngredient;
     public Action<Ingredient> OnGiveDairy;
+    public Action OnGiveDairyTutorial;
     public Action OnPlateFull;
     public Action OnStudentServed;
+
+    [Header("Tutorial")]
+    [Space(20)]
+    public bool isTutorial = false;
+    public UnityEvent TutorialOnAddIngredient;
+    public UnityEvent TutorialOnAddDairy;
 
     private void OnMouseEnter()
     {
@@ -55,6 +63,10 @@ public class Plate : MonoBehaviour
         OnAddIngredient += calculator.AddToCurrentCalculator;
         OnAddIngredient += score.AddScore;
 
+        if (isTutorial)
+        {
+            OnGiveDairyTutorial += () => TutorialOnAddDairy?.Invoke();
+        }
 
         OnGiveDairy += (ingredient) => 
         {
@@ -79,7 +91,8 @@ public class Plate : MonoBehaviour
         OnPlateFull += () => animator.SetTrigger("PlateFull");
 
         OnStudentServed += () => studentHand.enabled = false;
-        OnStudentServed += () => studentRequest.UpdateRequestRequirement(ingredientList);
+        OnStudentServed += () => studentRequest.UpdateRequestTick(false);
+        OnStudentServed += () => studentRequest.UpdateRequestRequirement(ingredientList, () => FindObjectOfType<Plate>().SuccessfulServingCounter++);
         OnStudentServed += studentRequest.UpdateRequest;
         OnStudentServed += () => studentRequest.StudentAnimator.SetTrigger("NextStudent");
         OnStudentServed += studentRequestUpdate.ShowNextStudent;
@@ -103,9 +116,19 @@ public class Plate : MonoBehaviour
 
     public void AddOntoPlate(Ingredient ingredient)
     {
+        if(isTutorial)
+        {
+            TutorialOnAddIngredient?.Invoke();
+        }
+
         ingredientList.Add(ingredient);
         placeholders[ingredientList.Count - 1].sprite = ingredient.Sprite;
         currentWeightage += ingredient.Weightage;
+
+        if(studentRequest.CheckIngredientRequested(ingredient))
+        {
+            studentRequest.UpdateRequestTick(true);
+        }
     }
 
     public void ServePlate(InputAction.CallbackContext context)

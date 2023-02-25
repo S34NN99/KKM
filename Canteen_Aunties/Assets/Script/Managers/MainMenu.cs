@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void Tutorial()
     {
-        Debug.Log("Tutorial");
+        SceneManager.LoadScene("TutorialScene");
     }
 
     public void Settings()

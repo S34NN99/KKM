@@ -21,10 +21,15 @@ public class Tray : Draggable
 
     private void Start()
     {
-        plate = FindObjectOfType<Plate>();
+        InitializePlate();
 
         OnClickTray += () => _Animator.SetTrigger("IsClick");
         OnClickTray += () => PS.Play();
+    }
+
+    public void InitializePlate()
+    {
+        plate = FindObjectOfType<Plate>();
     }
 
     public override void OnMouseDown()
@@ -48,6 +53,9 @@ public class Tray : Draggable
         {
             return;
         }
+
+        if (Plate == null)
+            InitializePlate();
 
         RaycastHit2D hit = Physics2D.Raycast(Latter.instance.transform.position, -Vector2.up);
 
@@ -77,6 +85,14 @@ public class Tray : Draggable
         {
             if (hit.collider.CompareTag("Student"))
             {
+                if(Plate.isTutorial)
+                {
+                    if(FindObjectOfType<TutorialManager>().CheckSlideNumber(5))
+                    {
+                        Plate.OnGiveDairyTutorial?.Invoke();
+                    }
+                }
+
                 Plate.OnGiveDairy?.Invoke(CurrentIngredient);
             }
         }

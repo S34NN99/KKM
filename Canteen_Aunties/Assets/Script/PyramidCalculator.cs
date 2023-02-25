@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Collections;
 
 public enum ReviewResponses
 {
@@ -105,12 +106,18 @@ public class PyramidCalculator : MonoBehaviour
     }
 
     [Space(10)]
-    [SerializeField] private StudentRequest studentRequest;
+    //private StudentRequest studentRequest;
+    [SerializeField] private StudentRequestUpdate studentRequestUpdate;
     [SerializeField] private StatisticTracker st;
     [SerializeField] private GameObject endGameScene;
 
     public Action OnGameEnd;
     public Action OnServePlate;
+
+    [Header("Tutorial")]
+    [Space(20)]
+    [SerializeField] private bool isTutorial;
+    public UnityEvent EverythingFillExceptDairy;
 
     private void Start()
     {
@@ -120,15 +127,51 @@ public class PyramidCalculator : MonoBehaviour
         OnServePlate += ResetWeightage;
         OnServePlate += () => CurrentAmountServed++;
 
-        OnGameEnd += () => endGameScene.SetActive(true);
         OnGameEnd += () => st.AddToStatisticDictionary(st.Healthy_Students, AmountOfGoodPlates());
         OnGameEnd += () => st.AddToStatisticDictionary(st.Meal_Requirement, AmountOfGoodPlates());
         OnGameEnd += () => st.AddToStatisticDictionary(st.Student_Preferences, FindObjectOfType<Plate>().SuccessfulServingCounter);
-        OnGameEnd += () => st.PeformStarCalculations(TargetAmountForPlateServe);
-        
+        OnGameEnd += () => st.PeformStarCalculations(TargetAmountForPlateServe);        
         OnGameEnd += st.UpdateStatsToDatabase;
-        OnGameEnd += () => FindObjectOfType<PauseManager>().Pause();
+        OnGameEnd += () => StartCoroutine(OpenEndGameScene());
+
+        //OnGameEnd += () => FindObjectOfType<PauseManager>().Pause();
     }
+
+    private IEnumerator OpenEndGameScene()
+    {
+        studentRequestUpdate.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        endGameScene.SetActive(true);
+        FindObjectOfType<PauseManager>().Pause();
+    }
+
+    #region tutorial
+    private void CheckPyramidScoring()
+    {
+        if (!isTutorial)
+            return;
+
+        if (!FindObjectOfType<TutorialManager>().CheckSlideNumber(4))
+            return;
+
+        if (CurrentWeightageScore[Category.Carb].Review != ReviewResponses.Green)
+            return;
+
+        if (CurrentWeightageScore[Category.Protein].Review != ReviewResponses.Green)
+            return;
+
+        if (CurrentWeightageScore[Category.Fruit].Review != ReviewResponses.Green)
+            return;
+
+        if (CurrentWeightageScore[Category.Vege].Review != ReviewResponses.Green)
+            return;
+
+        if (CurrentWeightageScore[Category.OilsAndFats].Review != ReviewResponses.Green)
+            return;
+
+        EverythingFillExceptDairy?.Invoke();
+    }
+    #endregion
 
     #region Pyramid 
     //MAke Action argument to update ReviewResponses and UIs
@@ -136,11 +179,12 @@ public class PyramidCalculator : MonoBehaviour
     {
         float value;
         if (IsBetween(CurrentWeightageScore[cat].Score, 1, RecommendedWeightage[cat], cat, out value))
-        {
             CurrentWeightageScore[cat].Review = ReviewResponses.Green;
-        }
+        else
+            CurrentWeightageScore[cat].Review = ReviewResponses.Red;
 
-        poster.OnUIUpdate?.Invoke(cat, value);
+
+        poster.OnUIUpdate?.Invoke(cat, (value + 0.5f));
     }
 
     public void UpdatePyramidCalculation(Category cat)
@@ -153,11 +197,11 @@ public class PyramidCalculator : MonoBehaviour
 
         float value = CompareWeightage(cat);
         if(value == 1)
-        {
-            //Perfect make it green;
             CurrentWeightageScore[cat].Review = ReviewResponses.Green;
-        }
+        else if(value > 1)
+            CurrentWeightageScore[cat].Review = ReviewResponses.Red;
 
+        CheckPyramidScoring();
         poster.OnUIUpdate?.Invoke(cat, value);
     }
 

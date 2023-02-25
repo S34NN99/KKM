@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class StudentRequestUpdate : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class StudentRequestUpdate : MonoBehaviour
     [SerializeField] private Plate plate;
 
     [SerializeField] private List<int> orderList;
+
     private void Start()
     {
         InitilizeOrder();

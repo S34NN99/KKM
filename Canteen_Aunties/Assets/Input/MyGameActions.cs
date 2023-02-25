@@ -135,6 +135,155 @@ public class @MyGameActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Tutorial1"",
+            ""id"": ""fdfd9e30-7ba5-479e-b5be-eb794b9813e5"",
+            ""actions"": [
+                {
+                    ""name"": ""Tray A"",
+                    ""type"": ""Button"",
+                    ""id"": ""df88e6c7-1a99-4bb4-8b1b-52cfb806330d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tray D"",
+                    ""type"": ""Button"",
+                    ""id"": ""42017cb5-5338-4533-a248-8f30c1178dba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""becda62f-8709-4144-a459-d733fa91fc0d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tray A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd143456-8599-41e8-8f8f-3e26433236b9"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tray D"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Tutorial2"",
+            ""id"": ""504e3693-18e5-4b01-8c28-ae41740fefe1"",
+            ""actions"": [
+                {
+                    ""name"": ""Plate DoubleTap W"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf410e64-b9a9-49ae-b781-b9aaaf354bea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Plate DoubleTap S"",
+                    ""type"": ""Button"",
+                    ""id"": ""5218b428-a542-4c33-ae57-1b141eebcef4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Plate W"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c0588bf-2f14-4b71-aad1-b415ed8755b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tray A"",
+                    ""type"": ""Button"",
+                    ""id"": ""048b4125-5883-4997-9696-cca2a13a3df3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tray D"",
+                    ""type"": ""Button"",
+                    ""id"": ""9481fdfc-2d53-4428-805a-98d85e7877b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b7212dd7-197a-4f6e-a69b-e06b2d6e9597"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Plate DoubleTap W"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a17d02ca-9895-442b-9a18-345233f281fd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Plate DoubleTap S"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b030d262-b94f-49ac-bc32-737df5d541fa"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Plate W"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54c150c2-cba5-466a-af00-a786b30fba6a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tray A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3be0caa-2e27-4bbe-935c-171e101fea9c"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tray D"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -208,6 +357,17 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         m_Player_PlateS = m_Player.FindAction("Plate S", throwIfNotFound: true);
         m_Player_TrayA = m_Player.FindAction("Tray A", throwIfNotFound: true);
         m_Player_TrayD = m_Player.FindAction("Tray D", throwIfNotFound: true);
+        // Tutorial1
+        m_Tutorial1 = asset.FindActionMap("Tutorial1", throwIfNotFound: true);
+        m_Tutorial1_TrayA = m_Tutorial1.FindAction("Tray A", throwIfNotFound: true);
+        m_Tutorial1_TrayD = m_Tutorial1.FindAction("Tray D", throwIfNotFound: true);
+        // Tutorial2
+        m_Tutorial2 = asset.FindActionMap("Tutorial2", throwIfNotFound: true);
+        m_Tutorial2_PlateDoubleTapW = m_Tutorial2.FindAction("Plate DoubleTap W", throwIfNotFound: true);
+        m_Tutorial2_PlateDoubleTapS = m_Tutorial2.FindAction("Plate DoubleTap S", throwIfNotFound: true);
+        m_Tutorial2_PlateW = m_Tutorial2.FindAction("Plate W", throwIfNotFound: true);
+        m_Tutorial2_TrayA = m_Tutorial2.FindAction("Tray A", throwIfNotFound: true);
+        m_Tutorial2_TrayD = m_Tutorial2.FindAction("Tray D", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +486,112 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Tutorial1
+    private readonly InputActionMap m_Tutorial1;
+    private ITutorial1Actions m_Tutorial1ActionsCallbackInterface;
+    private readonly InputAction m_Tutorial1_TrayA;
+    private readonly InputAction m_Tutorial1_TrayD;
+    public struct Tutorial1Actions
+    {
+        private @MyGameActions m_Wrapper;
+        public Tutorial1Actions(@MyGameActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TrayA => m_Wrapper.m_Tutorial1_TrayA;
+        public InputAction @TrayD => m_Wrapper.m_Tutorial1_TrayD;
+        public InputActionMap Get() { return m_Wrapper.m_Tutorial1; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Tutorial1Actions set) { return set.Get(); }
+        public void SetCallbacks(ITutorial1Actions instance)
+        {
+            if (m_Wrapper.m_Tutorial1ActionsCallbackInterface != null)
+            {
+                @TrayA.started -= m_Wrapper.m_Tutorial1ActionsCallbackInterface.OnTrayA;
+                @TrayA.performed -= m_Wrapper.m_Tutorial1ActionsCallbackInterface.OnTrayA;
+                @TrayA.canceled -= m_Wrapper.m_Tutorial1ActionsCallbackInterface.OnTrayA;
+                @TrayD.started -= m_Wrapper.m_Tutorial1ActionsCallbackInterface.OnTrayD;
+                @TrayD.performed -= m_Wrapper.m_Tutorial1ActionsCallbackInterface.OnTrayD;
+                @TrayD.canceled -= m_Wrapper.m_Tutorial1ActionsCallbackInterface.OnTrayD;
+            }
+            m_Wrapper.m_Tutorial1ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @TrayA.started += instance.OnTrayA;
+                @TrayA.performed += instance.OnTrayA;
+                @TrayA.canceled += instance.OnTrayA;
+                @TrayD.started += instance.OnTrayD;
+                @TrayD.performed += instance.OnTrayD;
+                @TrayD.canceled += instance.OnTrayD;
+            }
+        }
+    }
+    public Tutorial1Actions @Tutorial1 => new Tutorial1Actions(this);
+
+    // Tutorial2
+    private readonly InputActionMap m_Tutorial2;
+    private ITutorial2Actions m_Tutorial2ActionsCallbackInterface;
+    private readonly InputAction m_Tutorial2_PlateDoubleTapW;
+    private readonly InputAction m_Tutorial2_PlateDoubleTapS;
+    private readonly InputAction m_Tutorial2_PlateW;
+    private readonly InputAction m_Tutorial2_TrayA;
+    private readonly InputAction m_Tutorial2_TrayD;
+    public struct Tutorial2Actions
+    {
+        private @MyGameActions m_Wrapper;
+        public Tutorial2Actions(@MyGameActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PlateDoubleTapW => m_Wrapper.m_Tutorial2_PlateDoubleTapW;
+        public InputAction @PlateDoubleTapS => m_Wrapper.m_Tutorial2_PlateDoubleTapS;
+        public InputAction @PlateW => m_Wrapper.m_Tutorial2_PlateW;
+        public InputAction @TrayA => m_Wrapper.m_Tutorial2_TrayA;
+        public InputAction @TrayD => m_Wrapper.m_Tutorial2_TrayD;
+        public InputActionMap Get() { return m_Wrapper.m_Tutorial2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Tutorial2Actions set) { return set.Get(); }
+        public void SetCallbacks(ITutorial2Actions instance)
+        {
+            if (m_Wrapper.m_Tutorial2ActionsCallbackInterface != null)
+            {
+                @PlateDoubleTapW.started -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateDoubleTapW;
+                @PlateDoubleTapW.performed -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateDoubleTapW;
+                @PlateDoubleTapW.canceled -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateDoubleTapW;
+                @PlateDoubleTapS.started -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateDoubleTapS;
+                @PlateDoubleTapS.performed -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateDoubleTapS;
+                @PlateDoubleTapS.canceled -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateDoubleTapS;
+                @PlateW.started -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateW;
+                @PlateW.performed -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateW;
+                @PlateW.canceled -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnPlateW;
+                @TrayA.started -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnTrayA;
+                @TrayA.performed -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnTrayA;
+                @TrayA.canceled -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnTrayA;
+                @TrayD.started -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnTrayD;
+                @TrayD.performed -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnTrayD;
+                @TrayD.canceled -= m_Wrapper.m_Tutorial2ActionsCallbackInterface.OnTrayD;
+            }
+            m_Wrapper.m_Tutorial2ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PlateDoubleTapW.started += instance.OnPlateDoubleTapW;
+                @PlateDoubleTapW.performed += instance.OnPlateDoubleTapW;
+                @PlateDoubleTapW.canceled += instance.OnPlateDoubleTapW;
+                @PlateDoubleTapS.started += instance.OnPlateDoubleTapS;
+                @PlateDoubleTapS.performed += instance.OnPlateDoubleTapS;
+                @PlateDoubleTapS.canceled += instance.OnPlateDoubleTapS;
+                @PlateW.started += instance.OnPlateW;
+                @PlateW.performed += instance.OnPlateW;
+                @PlateW.canceled += instance.OnPlateW;
+                @TrayA.started += instance.OnTrayA;
+                @TrayA.performed += instance.OnTrayA;
+                @TrayA.canceled += instance.OnTrayA;
+                @TrayD.started += instance.OnTrayD;
+                @TrayD.performed += instance.OnTrayD;
+                @TrayD.canceled += instance.OnTrayD;
+            }
+        }
+    }
+    public Tutorial2Actions @Tutorial2 => new Tutorial2Actions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -377,6 +643,19 @@ public class @MyGameActions : IInputActionCollection, IDisposable
         void OnPlateDoubleTapS(InputAction.CallbackContext context);
         void OnPlateW(InputAction.CallbackContext context);
         void OnPlateS(InputAction.CallbackContext context);
+        void OnTrayA(InputAction.CallbackContext context);
+        void OnTrayD(InputAction.CallbackContext context);
+    }
+    public interface ITutorial1Actions
+    {
+        void OnTrayA(InputAction.CallbackContext context);
+        void OnTrayD(InputAction.CallbackContext context);
+    }
+    public interface ITutorial2Actions
+    {
+        void OnPlateDoubleTapW(InputAction.CallbackContext context);
+        void OnPlateDoubleTapS(InputAction.CallbackContext context);
+        void OnPlateW(InputAction.CallbackContext context);
         void OnTrayA(InputAction.CallbackContext context);
         void OnTrayD(InputAction.CallbackContext context);
     }

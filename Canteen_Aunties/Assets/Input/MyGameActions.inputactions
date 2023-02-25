@@ -122,6 +122,155 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Tutorial1",
+            "id": "fdfd9e30-7ba5-479e-b5be-eb794b9813e5",
+            "actions": [
+                {
+                    "name": "Tray A",
+                    "type": "Button",
+                    "id": "df88e6c7-1a99-4bb4-8b1b-52cfb806330d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tray D",
+                    "type": "Button",
+                    "id": "42017cb5-5338-4533-a248-8f30c1178dba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "becda62f-8709-4144-a459-d733fa91fc0d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tray A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd143456-8599-41e8-8f8f-3e26433236b9",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tray D",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Tutorial2",
+            "id": "504e3693-18e5-4b01-8c28-ae41740fefe1",
+            "actions": [
+                {
+                    "name": "Plate DoubleTap W",
+                    "type": "Button",
+                    "id": "bf410e64-b9a9-49ae-b781-b9aaaf354bea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Plate DoubleTap S",
+                    "type": "Button",
+                    "id": "5218b428-a542-4c33-ae57-1b141eebcef4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Plate W",
+                    "type": "Button",
+                    "id": "2c0588bf-2f14-4b71-aad1-b415ed8755b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tray A",
+                    "type": "Button",
+                    "id": "048b4125-5883-4997-9696-cca2a13a3df3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Tray D",
+                    "type": "Button",
+                    "id": "9481fdfc-2d53-4428-805a-98d85e7877b7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b7212dd7-197a-4f6e-a69b-e06b2d6e9597",
+                    "path": "<Keyboard>/w",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Plate DoubleTap W",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a17d02ca-9895-442b-9a18-345233f281fd",
+                    "path": "<Keyboard>/s",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Plate DoubleTap S",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b030d262-b94f-49ac-bc32-737df5d541fa",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Plate W",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54c150c2-cba5-466a-af00-a786b30fba6a",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tray A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3be0caa-2e27-4bbe-935c-171e101fea9c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tray D",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

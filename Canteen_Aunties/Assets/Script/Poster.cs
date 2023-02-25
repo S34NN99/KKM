@@ -17,8 +17,8 @@ public class Poster : MonoBehaviour
     {
         OnUIUpdate += (Category cat, float value) =>
         {
-            StartCoroutine(AnimateSliderOverTime(pyramidColumnsSlider[(int)cat], value, 1f));
-            pyramidColumnsSlider[(int)cat].GetComponentInChildren<Image>().color = DetermineColor(value);
+            StartCoroutine(AnimateSliderOverTime(pyramidColumnsSlider[(int)cat], value, 0.5f));
+            pyramidColumnsSlider[(int)cat].GetComponentInChildren<Image>().color = DetermineColor(value, cat);
         };
 
         OnUIReset += () =>
@@ -30,8 +30,17 @@ public class Poster : MonoBehaviour
         };
     }
 
-    private Color DetermineColor(float value)
+    private Color DetermineColor(float value, Category cat)
     {
+        if(cat == Category.OilsAndFats)
+        {
+            if (value <= 1.5f)
+                return Color.green;
+
+            if (value >= 2f)
+                return Color.red;
+        }
+
         if (value == 1)
             return Color.green;
         else if (value > 1)

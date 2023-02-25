@@ -21,6 +21,9 @@ public class Ingredient : ScriptableObject
     [SerializeField] private bool hasFats;
     public bool HasFats => hasFats;
 
+    [SerializeField] private string additionalInfo;
+    public string AdditionalInfo => additionalInfo;
+
     [SerializeField] private int weightage;
     public int Weightage => weightage;
 

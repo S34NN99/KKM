@@ -9,6 +9,7 @@ public class StudentRequest : MonoBehaviour
     public Animator StudentAnimator => animator;
     [SerializeField] private Menu menu;
     [SerializeField] private Image ingredientRequestedImage;
+    [SerializeField] private Image requestedIngredientTick;
     [SerializeField] private RectTransform ingredientRect;
 
     private Ingredient currentRequestedIngredient;
@@ -43,17 +44,28 @@ public class StudentRequest : MonoBehaviour
         ingredientRect.sizeDelta = new Vector2(currentRequestedIngredient.Sprite.rect.width, currentRequestedIngredient.Sprite.rect.height);
     }
 
+    public void UpdateRequestTick(bool power)
+    {
+        requestedIngredientTick.gameObject.SetActive(power);
+    }
+
     private bool CheckRequestRequirement(List<Ingredient> ingredients)
     {
         return ingredients.Contains(currentRequestedIngredient);
     }
 
-    public void UpdateRequestRequirement(List<Ingredient> listOfIngredients)
+    public bool CheckIngredientRequested(Ingredient ingredient)
+    {
+        return ingredient == currentRequestedIngredient;
+    }
+
+    public void UpdateRequestRequirement(List<Ingredient> listOfIngredients, Action action)
     {
         if(CheckRequestRequirement(listOfIngredients))
         {
             Debug.Log("Successful");
             FindObjectOfType<Plate>().SuccessfulServingCounter++;
+            action?.Invoke();
         }
     }
     #endregion

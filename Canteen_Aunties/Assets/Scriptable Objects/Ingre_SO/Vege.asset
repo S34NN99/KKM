@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Vege
   m_EditorClassIdentifier: 
-  ingredientName: 
+  ingredientName: KANGKUNG
   sprite: {fileID: 21300000, guid: 267be7148b72c91419f6ed60b98e5962, type: 3}
   category: 4
   hasFats: 0
+  additionalInfo: No oils and fats
   weightage: 6
   ingredientTray: {fileID: 6721704900021053168, guid: cd81a20fc757a984187f89409289e56d,
     type: 3}

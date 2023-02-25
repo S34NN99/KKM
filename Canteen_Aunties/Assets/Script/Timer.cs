@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private float currentTime;
     [SerializeField] private Image clockUI;
 
+    private bool GameEnd;
     private float angle;
 
     private void Awake()
@@ -29,7 +30,11 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            pyramidCal.OnGameEnd?.Invoke();
+            if (!GameEnd)
+            {
+                pyramidCal.OnGameEnd?.Invoke();
+                GameEnd = true;
+            }
         }
     }
 

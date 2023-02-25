@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TeacherMainMenu.unity
     guid: e39249b49869ef543831eb4cd01e1933
   - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 2bf1ecb63cad00543a62915c76364822
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:

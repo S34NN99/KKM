@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  ingredientName: 
-  sprite: {fileID: 21300000, guid: 091621de959d8c845b7b4d91f291a3ad, type: 3}
+  ingredientName: FISH
+  sprite: {fileID: 21300000, guid: 766148cb1b7db084781453a102011a16, type: 3}
   category: 2
   hasFats: 0
+  additionalInfo: No oils and fats
   weightage: 12
   ingredientTray: {fileID: 7253015676423669369, guid: efc7b1002e0e6f44babd43eb176ec13f,
     type: 3}
-  traySprite: {fileID: 21300000, guid: e5270ff2620c5264b8ffb92f96f069bb, type: 3}
+  traySprite: {fileID: 21300000, guid: db4531e9c53acb741bea540447561055, type: 3}

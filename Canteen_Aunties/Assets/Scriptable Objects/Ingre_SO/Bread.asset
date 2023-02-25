@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Bread
   m_EditorClassIdentifier: 
-  ingredientName: 
+  ingredientName: BREAD
   sprite: {fileID: 21300000, guid: cf98aa97a8bdad5489826d65446b329c, type: 3}
   category: 3
   hasFats: 0
+  additionalInfo: No oils and fats
   weightage: 6
   ingredientTray: {fileID: 9090422874600473003, guid: fe997bdd5d5896148830066f5c570366,
     type: 3}
