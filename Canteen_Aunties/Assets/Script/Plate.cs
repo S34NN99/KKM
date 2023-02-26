@@ -89,14 +89,15 @@ public class Plate : MonoBehaviour
             }
         };
         OnPlateFull += () => animator.SetTrigger("PlateFull");
+        OnPlateFull += () => GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFoodWeightageReached);
 
         OnStudentServed += () => studentHand.enabled = false;
         OnStudentServed += () => studentRequest.UpdateRequestTick(false);
-        OnStudentServed += () => studentRequest.UpdateRequestRequirement(ingredientList, () => FindObjectOfType<Plate>().SuccessfulServingCounter++);
+        OnStudentServed += () => studentRequest.UpdateRequestRequirement(ingredientList);
         OnStudentServed += studentRequest.UpdateRequest;
         OnStudentServed += () => studentRequest.StudentAnimator.SetTrigger("NextStudent");
         OnStudentServed += studentRequestUpdate.ShowNextStudent;
-        OnStudentServed += () => score.UpdateScoreToDatabase(score);
+        OnStudentServed += () => GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServingFood);
     }
 
     public void DisablePlateFullAnimation()
@@ -138,6 +139,16 @@ public class Plate : MonoBehaviour
             animator.SetBool("Boolean", false);
             OnStudentServed?.Invoke();
             calculator.OnServePlate?.Invoke();
+
+            foreach (SpriteRenderer sr in placeholders)
+            {
+                sr.sprite = null;
+            }
+
+            currentWeightage = 0;
+            ingredientList.Clear();
+            calculator.ResetWeightage();
+            poster.OnUIReset?.Invoke();
         }
     }
 
@@ -153,6 +164,8 @@ public class Plate : MonoBehaviour
     {
         if (context.performed)
         {
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnThrowingFood);
+
             foreach (SpriteRenderer sr in placeholders)
             {
                 sr.sprite = null;

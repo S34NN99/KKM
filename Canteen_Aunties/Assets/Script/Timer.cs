@@ -32,6 +32,7 @@ public class Timer : MonoBehaviour
         {
             if (!GameEnd)
             {
+                GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnTimeRunsOut);
                 pyramidCal.OnGameEnd?.Invoke();
                 GameEnd = true;
             }

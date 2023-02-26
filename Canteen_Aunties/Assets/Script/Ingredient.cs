@@ -32,5 +32,8 @@ public class Ingredient : ScriptableObject
 
     [SerializeField] private Sprite traySprite;
     public Sprite TraySprite => traySprite;
+
+    [SerializeField] private string soundEffect;
+    public string SoundEffect => soundEffect;
 }
 

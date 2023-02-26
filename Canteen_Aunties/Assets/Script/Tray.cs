@@ -32,6 +32,28 @@ public class Tray : Draggable
         plate = FindObjectOfType<Plate>();
     }
 
+    private void PlayIngredientDropAudio()
+    {
+        switch(CurrentIngredient.SoundEffect)
+        {
+            case "Dry":
+                GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFoodDroppedDry);
+                break;
+
+            case "Wet":
+                GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFoodDroppedWet);
+                break;
+
+            case "Crispy":
+                GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFoodDroppedCrispy);
+                break;
+
+            case "Porridge":
+                GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFoodDroppedPorridge);
+                break;
+        }
+    }
+
     public override void OnMouseDown()
     {
         if (!CheckPause())
@@ -41,6 +63,7 @@ public class Tray : Draggable
             Latter.instance.AddToLatter(CurrentIngredient);
 
             OnClickTray?.Invoke();
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFoodPickUp);
         }
     }
 
@@ -48,6 +71,7 @@ public class Tray : Draggable
     {
         IngredientManager.instance.DropIngredient();
         IngredientManager.instance.ChangeDefaultCursor();
+        PlayIngredientDropAudio();
 
         if (CheckPause())
         {

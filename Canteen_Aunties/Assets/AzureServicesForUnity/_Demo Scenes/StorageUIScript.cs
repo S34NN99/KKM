@@ -19,6 +19,10 @@ public class User : TableEntity
     private void SplitText(string partitionKey)
     {
         string[] s = partitionKey.Split('_');
+
+        if (s.Length < 2)
+            return;
+
         this.SchoolAndClass = s[0];
         this.PartitionKey = s[1];
     }
@@ -132,10 +136,8 @@ public class StorageUIScript : MonoBehaviour
                  if (Globals.DebugFlag)  Debug.Log(status);
                  foreach (var item in queryTableResponse.Result)
                  {
-                     Debug.Log(string.Format("Item with PartitionKey {0} and RowKey {1} and school {2}", item.PartitionKey, item.RowKey, item.SchoolAndClass));
                      if (Verification(user, item))
                      {
-                         Debug.Log("Successful login");
                          //Login here
                          TableStorageClient.Instance.CurrentUser = item;
 
@@ -147,10 +149,11 @@ public class StorageUIScript : MonoBehaviour
                          return;
                      }
                  }
-                 //StatusText.text = "Login Unsuccesful";
+                 GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFailedLogin);
              }
              else
              {
+                 GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFailedLogin);
                  ShowError(queryTableResponse.Exception.Message);
              }
          });

@@ -18,6 +18,8 @@ public class BlackBoard : MonoBehaviour
 
     public void DisplayIngredient(BlackBoardIngredients bbIngredient)
     {
+        GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnButtonPressed);
+
         foodName.text = bbIngredient.Ingredient.IngredientName;
         image.sprite = bbIngredient.Ingredient.TraySprite;
         category.text = bbIngredient.Ingredient.Category.ToString();

@@ -61,6 +61,7 @@ public class Menu : MonoBehaviour
                 return;
             }
 
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnTrayMove); ;
             trayParents[currentTrayPage].GetComponent<Animator>().SetTrigger("OnEnterRight");
             trayParents[currentTrayPage - 1].GetComponent<Animator>().SetTrigger("OnExitLeft");
         }
@@ -77,6 +78,7 @@ public class Menu : MonoBehaviour
                 return;
             }
 
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnTrayMove);
             trayParents[currentTrayPage].GetComponent<Animator>().SetTrigger("OnEnterLeft");
             trayParents[currentTrayPage + 1].GetComponent<Animator>().SetTrigger("OnExitRight");
         }

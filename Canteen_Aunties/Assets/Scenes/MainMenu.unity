@@ -1714,6 +1714,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 184820191}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &190307717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6693132116575634496, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 6693132116662163909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbeaf8d8aac66f4ab2b15b9d5756581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &214538546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,6 +2148,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 190307717}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnButtonPressed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &472604041
@@ -9500,6 +9523,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 190307717}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnButtonGamePlayed
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &985771865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9670,6 +9704,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 190307717}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnButtonPressed
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &986098024
@@ -10419,6 +10464,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: FadeOut
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 190307717}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnButtonGamePlayed
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1066767249
@@ -12112,6 +12168,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 190307717}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnButtonPressed
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1318556384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13354,6 +13421,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 190307717}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnButtonPressed
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1680159521
@@ -15546,6 +15624,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6693132116662163909
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6693132116575634497, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e01b4b21d3c6ff749ae37dd6b5d078bf, type: 3}
 --- !u!1001 &7883605887340076142
 PrefabInstance:
   m_ObjectHideFlags: 0

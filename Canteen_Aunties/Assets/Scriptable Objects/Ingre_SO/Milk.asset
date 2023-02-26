@@ -21,3 +21,4 @@ MonoBehaviour:
   ingredientTray: {fileID: 8788365147548899521, guid: 41a382e73546acd44866c79894e883d4,
     type: 3}
   traySprite: {fileID: 21300000, guid: 09be65cb54f81a944b3bff70c5e0f928, type: 3}
+  soundEffect: Dry

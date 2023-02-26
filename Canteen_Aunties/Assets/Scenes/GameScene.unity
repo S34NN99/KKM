@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2733,6 +2733,18 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &359769172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6693132116575634496, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 596006954}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbeaf8d8aac66f4ab2b15b9d5756581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &369448877
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,7 +4258,7 @@ PrefabInstance:
     - target: {fileID: 4250073667752936967, guid: 273ea325c5d2ddd4fbf5c15f7d8d39ff,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4374714202029140108, guid: 273ea325c5d2ddd4fbf5c15f7d8d39ff,
         type: 3}
@@ -4301,6 +4313,105 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273ea325c5d2ddd4fbf5c15f7d8d39ff, type: 3}
+--- !u!1001 &596006954
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6693132116495020177, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116495020183, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634496, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: isGameScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634497, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116575634499, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116620493670, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Food Picked Player SFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116803110528, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693132116803110530, guid: e01b4b21d3c6ff749ae37dd6b5d078bf,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e01b4b21d3c6ff749ae37dd6b5d078bf, type: 3}
 --- !u!1 &611551799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,7 +4620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poster: {fileID: 475593645}
   TargetAmountForPlateServe: 5
-  studentRequestUpdate: {fileID: 0}
+  studentRequestUpdate: {fileID: 818713319}
   st: {fileID: 432949191}
   endGameScene: {fileID: 25096702}
   isTutorial: 0
@@ -5447,17 +5558,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1196456698}
-        m_MethodName: EmptyPlate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1196456698}
         m_MethodName: ShowTextResult
         m_Mode: 0
         m_Arguments:
@@ -5545,6 +5645,34 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 38bd83e1-d045-4cc9-b8fa-bc340387ad7c
     m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: df88e6c7-1a99-4bb4-8b1b-52cfb806330d
+    m_ActionName: Tutorial1/Tray A[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 42017cb5-5338-4533-a248-8f30c1178dba
+    m_ActionName: Tutorial1/Tray D[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bf410e64-b9a9-49ae-b781-b9aaaf354bea
+    m_ActionName: Tutorial2/Plate DoubleTap W[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5218b428-a542-4c33-ae57-1b141eebcef4
+    m_ActionName: Tutorial2/Plate DoubleTap S[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c0588bf-2f14-4b71-aad1-b415ed8755b2
+    m_ActionName: Tutorial2/Plate W[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 048b4125-5883-4997-9696-cca2a13a3df3
+    m_ActionName: Tutorial2/Tray A[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9481fdfc-2d53-4428-805a-98d85e7877b7
+    m_ActionName: Tutorial2/Tray D[/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -5749,7 +5877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958205565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2993345, y: -1.8688073, z: -9.986328}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 618121193}
@@ -8391,7 +8519,42 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 3
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 359769172}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnCountdownThree
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1677176692}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 359769172}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnCountdownOneAndTwo
           m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
@@ -8407,6 +8570,17 @@ MonoBehaviour:
           m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 359769172}
+        m_MethodName: BroadCastEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnCountdownOneAndTwo
+          m_BoolArgument: 0
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 87810325}
@@ -8419,17 +8593,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 1
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
   _counter: 0
 --- !u!1001 &1595383207

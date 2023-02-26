@@ -4,10 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Start()
-    {
-    }
-
     public void ScoreBoard()
     {
         Debug.Log("Scoreboard");

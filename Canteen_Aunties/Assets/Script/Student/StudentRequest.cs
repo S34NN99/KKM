@@ -59,13 +59,13 @@ public class StudentRequest : MonoBehaviour
         return ingredient == currentRequestedIngredient;
     }
 
-    public void UpdateRequestRequirement(List<Ingredient> listOfIngredients, Action action)
+    public void UpdateRequestRequirement(List<Ingredient> listOfIngredients)
     {
         if(CheckRequestRequirement(listOfIngredients))
         {
             Debug.Log("Successful");
             FindObjectOfType<Plate>().SuccessfulServingCounter++;
-            action?.Invoke();
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServeStudentPreference);
         }
     }
     #endregion

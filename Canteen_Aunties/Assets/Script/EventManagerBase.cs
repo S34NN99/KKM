@@ -38,18 +38,18 @@ public abstract class EventManagerBase : MonoBehaviour {
             Destroy(awakingInstance);
         }
     }
-
+    
     #region Events with Parameters
-    protected static void StartListeningTo<T>(Dictionary<string, UnityEvent<T>> eventDictionary, string eventName, UnityAction<T> action) {
-        UnityEvent<T> thisEvent;
-        if (eventDictionary.TryGetValue(eventName, out thisEvent)) {
-            thisEvent.AddListener(action);
-        } else {
-            thisEvent = new UnityEvent<T>();
-            thisEvent.AddListener(action);
-            eventDictionary.Add(eventName, thisEvent);
-        }
-    }
+    //protected static void StartListeningTo<T>(Dictionary<string, UnityEvent<T>> eventDictionary, string eventName, UnityAction<T> action) {
+    //    UnityEvent<T> thisEvent;
+    //    if (eventDictionary.TryGetValue(eventName, out thisEvent)) {
+    //        thisEvent.AddListener(action);
+    //    } else {
+    //        thisEvent = new UnityEvent<T>();
+    //        thisEvent.AddListener(action);
+    //        eventDictionary.Add(eventName, thisEvent);
+    //    }
+    //}
     protected static void StopListeningTo<T>(Dictionary<string, UnityEvent<T>> eventDictionary, string eventName, UnityAction<T> action) {
         UnityEvent<T> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent)) {

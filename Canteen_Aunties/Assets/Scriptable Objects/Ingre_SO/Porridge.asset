@@ -21,3 +21,4 @@ MonoBehaviour:
   ingredientTray: {fileID: 6471929004247042642, guid: 99d921e81bd096b48bfcbe70491d7dba,
     type: 3}
   traySprite: {fileID: 21300000, guid: 64e710cc0d61ceb4fa64920192686fd3, type: 3}
+  soundEffect: Porridge

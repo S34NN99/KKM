@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class MainBG
+    {
+        public bool playOnFirstLogin;
+        public AudioClip[] mainBgclips;
+    }
+
     public static void SetBgmVolume(float volume)
     {
         PlayerPrefs.SetFloat("Bgm_Volume", volume);
@@ -70,7 +77,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public const string OnButtonPressed = "OnButtonPressed";
-    public const string OnGamePlayed = "OnGamePlayed";
+    public const string OnButtonGamePlayed = "OnButtonGamePlayed";
 
     public const string OnFoodDroppedDry = "OnFoodDroppedDry";
     public const string OnFoodDroppedWet = "OnFoodDroppedWet";
@@ -82,27 +89,29 @@ public class AudioManager : MonoBehaviour
     public const string OnThrowingFood = "OnThrowingFood";
     public const string OnTrayMove = "OnTrayMove";
 
-    public const string OnServeHealtyFood = "OnServerHealtyFood";
-    public const string OnServeUnhealtyFood = "OnServeUnhealtyFood";
+    public const string OnServeHealthyFood = "OnServerHealthyFood";
+    public const string OnServeUnhealthyFood = "OnServeUnhealtyFood";
     public const string OnFoodWeightageReached = "OnFoodWeightageReached";
     public const string OnTimeRunsOut = "OnTimeRunsOut";
     public const string OnRandomButtonPresses = "OnRandomButtonPresses";
     public const string OnFailedLogin = "OnFailedLogin";
 
+    public const string OnServeStudentPreference = "OnServeStudentPreference";
     public const string ResultScreenPlayed = "ResultScreenPlayed";
     public const string OnLevelStart = "OnLevelStart";
-    public const string OnCountdownOne = "OnCountDownOne";
-    public const string OnCountdownTwo = "OnCountDownTwo";
-    public const string OnCountdownThree = "OnCountDownThree";
+    public const string OnCountdownOneAndTwo = "OnCountdownOneAndTwo";
+    public const string OnCountdownThree = "OnCountdownThree";
 
     public const string CanteenAmbient = "CanteenAmbient";
     public const string OnGameSceneBG = "OnGameSceneBG";
     public const string OnMainMenuBG = "OnMainMenuBG";
 
+    [SerializeField] private bool isGameScene;
+
     [Header("Clips")]
     [Space()]
-    [SerializeField] private AudioClip onButtonPressed;
-    [SerializeField] private AudioClip onGamePlayed;
+    [SerializeField] private AudioClip[] onButtonPressed;
+    [SerializeField] private AudioClip onButtonGamePlayed;
 
     [Space()]
     [SerializeField] private AudioClip onFoodDroppedDry;
@@ -115,39 +124,193 @@ public class AudioManager : MonoBehaviour
 
     [Space()]
     [SerializeField] private AudioClip onTrayMove;
-    [SerializeField] private AudioClip onServeHealtyFood;
-    [SerializeField] private AudioClip onServeUnhealtyFood;
-    [SerializeField] private AudioClip onFoodWeightageReached;
-    [SerializeField] private AudioClip onTimeRunsOut;
-    [SerializeField] private AudioClip onRandomButtonPresses;
-    [SerializeField] private AudioClip onFailedLogin;
+    [SerializeField] private AudioClip onServeHealthyFood;
+    [SerializeField] private AudioClip negativeAction;
 
     [Space()]
     [SerializeField] private AudioClip resultScreenPlayed;
     [SerializeField] private AudioClip onLevelStart;
-    [SerializeField] private AudioClip onCountdownOne;
-    [SerializeField] private AudioClip onCountdownTwo;
+    [SerializeField] private AudioClip onCountdownOneAndTwo;
     [SerializeField] private AudioClip onCountdownThree;
 
     [Space()]
     [SerializeField] private AudioClip canteenAmbient;
     [SerializeField] private AudioClip onGameSceneBG;
-    [SerializeField] private AudioClip[] onMainMenuBG;
+    [SerializeField] private MainBG onMainMenuBG;
 
     [Space()]
     [Header("Audio Sources")]
     [SerializeField] private AudioSource bgMusicPlayer;
+    [SerializeField] private AudioSource canteenAmbientPlayer;
     [SerializeField] private AudioSource uiSfxPlayer;
+    [SerializeField] private AudioSource foodPickedSfxPlayer;
+    [SerializeField] private AudioSource foodDropSfxPlayer;
+    [SerializeField] private AudioSource plateServingSfxPlayer;
+    [SerializeField] private AudioSource gameSceneSfxPlayer;
+
 
     private void Start()
     {
         GeneralEventManager.Instance.StartListeningTo(OnButtonPressed, () =>
         {
-            uiSfxPlayer.clip = onButtonPressed;
+            int randomNum = Random.Range(0, onButtonPressed.Length);
+            uiSfxPlayer.clip = onButtonPressed[randomNum];
             uiSfxPlayer.Play();
         });
 
+        GeneralEventManager.Instance.StartListeningTo(OnButtonGamePlayed, () =>
+        {
+            uiSfxPlayer.clip = onButtonGamePlayed;
+            uiSfxPlayer.Play();
+        });
 
+        GeneralEventManager.Instance.StartListeningTo(CanteenAmbient, () =>
+        {
+            canteenAmbientPlayer.clip = canteenAmbient;
+            canteenAmbientPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFoodDroppedDry, () =>
+        {
+            foodDropSfxPlayer.clip = onFoodDroppedDry;
+            foodDropSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFoodDroppedWet, () =>
+        {
+            foodDropSfxPlayer.clip = onFoodDroppedWet;
+            foodDropSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFoodDroppedCrispy, () =>
+        {
+            foodDropSfxPlayer.clip = onFoodDroppedCrispy;
+            foodDropSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFoodDroppedPorridge, () =>
+        {
+            foodDropSfxPlayer.clip = onFoodDroppedPorridge;
+            foodDropSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFoodPickUp, () =>
+        {
+            foodPickedSfxPlayer.clip = onFoodPickUp;
+            foodPickedSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnServingFood, () =>
+        {
+            uiSfxPlayer.clip = onServingFood;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnThrowingFood, () =>
+        {
+            uiSfxPlayer.clip = onThrowingFood;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnTrayMove, () =>
+        {
+            uiSfxPlayer.clip = onTrayMove;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnServeUnhealthyFood, () =>
+        {
+            plateServingSfxPlayer.clip = negativeAction;
+            plateServingSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFoodWeightageReached, () =>
+        {
+            foodPickedSfxPlayer.clip = negativeAction;
+            foodPickedSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnTimeRunsOut, () =>
+        {
+            gameSceneSfxPlayer.clip = negativeAction;
+            gameSceneSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnRandomButtonPresses, () =>
+        {
+            uiSfxPlayer.clip = negativeAction;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnFailedLogin, () =>
+        {
+            uiSfxPlayer.clip = negativeAction;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnServeHealthyFood, () =>
+        {
+            plateServingSfxPlayer.clip = onServeHealthyFood;
+            plateServingSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(ResultScreenPlayed, () =>
+        {
+            gameSceneSfxPlayer.clip = resultScreenPlayed;
+            gameSceneSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnServeStudentPreference, () =>
+        {
+            gameSceneSfxPlayer.clip = resultScreenPlayed;
+            gameSceneSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnLevelStart, () =>
+        {
+            gameSceneSfxPlayer.clip = onLevelStart;
+            gameSceneSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnCountdownOneAndTwo, () =>
+        {
+            uiSfxPlayer.clip = onCountdownOneAndTwo;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnCountdownThree, () =>
+        {
+            uiSfxPlayer.clip = onCountdownThree;
+            uiSfxPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnGameSceneBG, () =>
+        {
+            bgMusicPlayer.clip = onGameSceneBG;
+            bgMusicPlayer.Play();
+        });
+
+        GeneralEventManager.Instance.StartListeningTo(OnMainMenuBG, () =>
+        {
+            bgMusicPlayer.clip = onMainMenuBG.mainBgclips[0];
+            bgMusicPlayer.Play();
+        });
+
+        if(isGameScene)
+        {
+            GeneralEventManager.Instance.BroadcastEvent(OnLevelStart);
+            GeneralEventManager.Instance.BroadcastEvent(OnGameSceneBG);
+            GeneralEventManager.Instance.BroadcastEvent(CanteenAmbient);
+        }
+        else
+        {
+            GeneralEventManager.Instance.BroadcastEvent(OnMainMenuBG);
+        }
+    }
+
+    public void BroadCastEvent(string eventName)
+    {
+        GeneralEventManager.Instance.BroadcastEvent(eventName);
     }
 
 }

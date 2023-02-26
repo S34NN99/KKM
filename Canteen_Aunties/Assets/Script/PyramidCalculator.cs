@@ -29,7 +29,6 @@ public class PlateServed
     public enum PlateEvaluation
     {
         Perfect,
-        Good,
         Bad,
     }
 
@@ -39,6 +38,10 @@ public class PlateServed
     {
         //Check if dish is good or not
         plateEvaluation = ReviewPlate(dish);
+        if (plateEvaluation == PlateEvaluation.Perfect)
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServeHealthyFood);
+        else
+            GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServeUnhealthyFood);
     }
 
     //Check if plate is good or not here
@@ -142,6 +145,7 @@ public class PyramidCalculator : MonoBehaviour
         studentRequestUpdate.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
         endGameScene.SetActive(true);
+        GeneralEventManager.Instance.BroadcastEvent(AudioManager.ResultScreenPlayed);
         FindObjectOfType<PauseManager>().Pause();
     }
 
