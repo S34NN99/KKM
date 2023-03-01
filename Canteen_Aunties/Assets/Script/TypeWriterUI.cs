@@ -26,7 +26,7 @@ public class TypeWriterUI : MonoBehaviour
 			writer = _text.text;
 			_text.text = "";
 
-			StartTypeWriterText();
+			StartCoroutine("TypeWriterText");
 		}
 
 		if (_tmpProText != null)

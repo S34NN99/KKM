@@ -22,9 +22,19 @@ public class ReviewsSO : ScriptableObject
         return allReviews[randomNum];
     }
 
-    public string RandomizeReview(List<string> listToRandomize)
+    public string RandomizeReview(int numOfStars)
     {
-        int num = Random.Range(0, listToRandomize.Count);
-        return listToRandomize[num];
+
+        if(numOfStars >= 3)
+        {
+            int num = Random.Range(0, FiveStarReviews.Count);
+            return FiveStarReviews[num];
+        }
+        else
+        {
+            int num = Random.Range(0, TwoStarBelowReviews.Count);
+            return TwoStarBelowReviews[num];
+        }
     }
+
 }

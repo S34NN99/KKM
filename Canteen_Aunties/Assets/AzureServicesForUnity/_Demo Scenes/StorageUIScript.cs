@@ -94,6 +94,11 @@ public class StorageUIScript : MonoBehaviour
         OnAnomyousLogin += () => SceneManager.LoadScene("MainMenu");
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void AnomynousLogin()
     {
         TableStorageClient.Instance.CurrentUser = new User();
@@ -149,10 +154,12 @@ public class StorageUIScript : MonoBehaviour
                          return;
                      }
                  }
+                 StatusText.text = "Failed Login, Try again";
                  GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFailedLogin);
              }
              else
              {
+                 StatusText.text = "Failed Login, Try again";
                  GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnFailedLogin);
                  ShowError(queryTableResponse.Exception.Message);
              }
@@ -204,6 +211,9 @@ public class StorageUIScript : MonoBehaviour
 
         TableStorageClient.Instance.QueryTable<User>(tq, tableName, queryTableResponse =>
         {
+            if (queryTableResponse.Result == null)
+                return;
+
             foreach (var item in queryTableResponse.Result)
             {
                 if (Verification(user, item))
@@ -222,7 +232,7 @@ public class StorageUIScript : MonoBehaviour
                 {
                     if (insertEntityResponse.Status == CallBackResult.Success)
                     {
-                        string result = "InsertEntity completed";
+                        string result = "User created";
                         Debug.Log(result);
                         StatusText.text = result;
                     }

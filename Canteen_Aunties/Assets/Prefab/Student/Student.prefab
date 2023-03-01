@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961874b55d45ea348830ba93ed00bc33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 0}
+  dairyProduct: {fileID: 1131837533093219821}
   ingredientRequestedImage: {fileID: 3929512853045048936}
   requestedIngredientTick: {fileID: 3802193077357734745}
   ingredientRect: {fileID: 3896932858766899695}

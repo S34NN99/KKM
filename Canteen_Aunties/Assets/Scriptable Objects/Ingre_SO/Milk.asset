@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Milk
   m_EditorClassIdentifier: 
-  ingredientName: MILK
+  ingredientNameEnglish: 
+  ingredientName: {fileID: 11400000, guid: f91d5aa842d170a479f8d054fb2dfed6, type: 2}
   sprite: {fileID: 21300000, guid: cecce8e8477bc0648bca3e22ad893b8d, type: 3}
   category: 1
   hasFats: 0
   additionalInfo: No oils and fats
   weightage: 6
+  portionSize: 1
   ingredientTray: {fileID: 8788365147548899521, guid: 41a382e73546acd44866c79894e883d4,
     type: 3}
   traySprite: {fileID: 21300000, guid: 09be65cb54f81a944b3bff70c5e0f928, type: 3}

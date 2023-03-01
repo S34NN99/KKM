@@ -97,16 +97,16 @@ public class Menu : MonoBehaviour
     private void RandomizeTodayMenu()
     {
         GetCarbBelowTable(ref todayMenus);
-        GetIngredient(Category.Carb, 1, ref todayMenus);
-        GetIngredient(Category.Protein, 2, ref todayMenus);
-        GetIngredient(Category.Vege, 2, ref todayMenus);
-        GetIngredient(Category.Fruit, 2, ref todayMenus);
-        GetIngredient(Category.Dairy, 1, ref todayMenus);
+        GetIngredient(Category.Carb, 1, false, ref todayMenus);
+        GetIngredient(Category.Protein, 2, true, ref todayMenus);
+        GetIngredient(Category.Vege, 2, true, ref todayMenus);
+        GetIngredient(Category.Fruit, 2, false, ref todayMenus);
+        GetIngredient(Category.Dairy, 1, false, ref todayMenus);
         ShuffleMenuList(ref todayMenus);
     }
 
     #region Conditions
-    private void GetIngredient(Category cat, int num, ref List<Ingredient> ingredientsListed)
+    private void GetIngredient(Category cat, int num, bool includeFatandOil, ref List<Ingredient> ingredientsListed)
     {
         List<Ingredient> ingredientList = new List<Ingredient>();
 
@@ -132,11 +132,40 @@ public class Menu : MonoBehaviour
         else
             ingredientList = sortedIngredients[cat];
 
-        for (int i = 0; i < num; i++)
+        if (includeFatandOil)
         {
-            int randomNum = Random.Range(0, ingredientList.Count);
-            ingredientsListed.Add(ingredientList[randomNum]);
-            ingredientList.RemoveAt(randomNum);
+            bool temp = false;
+            while (!temp)
+            {
+                int randomNum = Random.Range(0, ingredientList.Count);
+                if (ingredientList[randomNum].HasFats)
+                {
+                    ingredientsListed.Add(ingredientList[randomNum]);
+                    ingredientList.RemoveAt(randomNum);
+                    temp = true;
+                }
+            }
+
+            for(int i = 0; i < num - 1; i++)
+            {
+                int randomNum = Random.Range(0, ingredientList.Count);
+                if (ingredientList[randomNum].HasFats)
+                    num++;
+                else
+                {
+                    ingredientsListed.Add(ingredientList[randomNum]);
+                    ingredientList.RemoveAt(randomNum);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < num; i++)
+            {
+                int randomNum = Random.Range(0, ingredientList.Count);
+                ingredientsListed.Add(ingredientList[randomNum]);
+                ingredientList.RemoveAt(randomNum);
+            }
         }
     }
 

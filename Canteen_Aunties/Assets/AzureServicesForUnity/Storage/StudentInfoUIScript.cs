@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 using AzureServicesForUnity.Shared;
 
 public class StudentInfoUIScript : MonoBehaviour
 {
     [Header("UIs")]
-    public TextMeshProUGUI schoolText;
-    public TextMeshProUGUI nameText;
+    [SerializeField] private Text nameText;
+    [HideInInspector] public string schoolCode;
 
-    [SerializeField] private InspectUIScript inspect;
+    private string studentName;
+    public string StudentName
+    {
+        get { return studentName; }
+        set { studentName = value; nameText.text = value; }
+    }
+
+    private InspectUIScript inspect;
+
+    public void InputName(string name)
+    {
+        nameText.text = name;
+    }
 
     public void Inspect()
     {
@@ -18,11 +30,14 @@ public class StudentInfoUIScript : MonoBehaviour
 
         TableQuery tq = new TableQuery()
         {
-            filter = $"PartitionKey eq '{nameText.text}'",
-            select = "PartitionKey, Finished_Service, Five_Stars, Healthy_Students, Meal_Requirement, Student_Preferences",
+            filter = $"PartitionKey eq '{studentName}'",
+            select = "PartitionKey, RowKey, SessionPlayed, NumberOfCompleteHealtyPlateWithDairy," +
+            "NumberOfCompleteHealtyPlateWithoutDairy, AverageImprovementOfFullyHealthyPlate," +
+            "AverageDurationOfGamePlayPerEntry, AverageDurationToCompleteAHealthyPlateWithDairy," +
+            "AverageDurationToCompleteAHealthyPlateWithoutDairy, NumberOfPlatesDiscard, AverageGreenBarsPerPlate"
         };
 
-        TableStorageClient.Instance.QueryTable<Stats>(tq, schoolText.text, queryTableResponse =>
+        TableStorageClient.Instance.QueryTable<Stats>(tq, schoolCode, queryTableResponse =>
         {
             if(queryTableResponse.Status == CallBackResult.Success)
             {
@@ -30,18 +45,19 @@ public class StudentInfoUIScript : MonoBehaviour
                 inspect.OpenInspect();
                 foreach(var item in queryTableResponse.Result)
                 {
-                    inspect.FinishedMoreThan3Stars.text = item.Finished_Service_With_More_Than_3_Stars.ToString();
-                    inspect.NumberOf5tars.text = item.Five_Stars.ToString();
-                    inspect.HealthyStudents.text = item.Healthy_Students.ToString();
-                    inspect.PrincipalRecommendations.text = item.Principal_Recommendations.ToString();
-                    inspect.HealthInspector.text = item.Health_Inspector_Demerits.ToString();
+                    inspect.studentName.text = item.PartitionKey;
+
+                    inspect.sessionPlayed.text = item.SessionPlayed.ToString();
+                    inspect.avgDurationOfGamePlay.text = (int)item.AverageDurationOfGamePlayPerEntry + " seconds";
+                    inspect.completedHealthyPlateWithDairy.text = item.NumberOfCompleteHealthyPlateWithDairy.ToString();
+                    inspect.completedHealthyPlateWithoutDairy.text = item.NumberOfCompleteHealthyPlateWithoutDairy.ToString();
+                    inspect.avgDurationToCompleteWithoutDairy.text = (int)item.AverageDurationToCompleteAHealthyPlateWithoutDairy + " seconds";
+                    inspect.avgDurationToCompleteWithDairy.text = (int)item.AverageDurationToCompleteAHealthyPlateWithDairy + " seconds";
+                    inspect.avgImprovementOfHealthyPlate.text = item.AverageImprovementOfFullyHealthyPlate.ToString();
+                    inspect.avgGreenBarsPerPlate.text = item.AverageGreenBarsPerPlate.ToString();
+                    inspect.numberOfPlatesDiscarded.text = item.NumberOfPlatesDiscard.ToString();
                 }
             }
-            else
-            {
-                Debug.Log("Not Successful");
-            }
-
         });   
     }
 }

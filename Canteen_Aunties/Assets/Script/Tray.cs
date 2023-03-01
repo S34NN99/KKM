@@ -69,14 +69,9 @@ public class Tray : Draggable
 
     public override void OnMouseUp()
     {
-        IngredientManager.instance.DropIngredient();
-        IngredientManager.instance.ChangeDefaultCursor();
-        PlayIngredientDropAudio();
 
         if (CheckPause())
-        {
             return;
-        }
 
         if (Plate == null)
             InitializePlate();
@@ -87,6 +82,10 @@ public class Tray : Draggable
         {
             return;
         }
+
+        IngredientManager.instance.DropIngredient();
+        IngredientManager.instance.ChangeDefaultCursor();
+        PlayIngredientDropAudio();
 
         if (CurrentIngredient.Category != Category.Dairy)
         {

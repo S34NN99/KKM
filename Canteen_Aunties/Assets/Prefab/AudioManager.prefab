@@ -172,7 +172,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameScene: 0
+  isMainMenu: 0
   onButtonPressed:
   - {fileID: 8300000, guid: b418343514dd30749b8633bbfa23153f, type: 3}
   - {fileID: 8300000, guid: ffe51e4e62a80c446837bf06d71f7823, type: 3}

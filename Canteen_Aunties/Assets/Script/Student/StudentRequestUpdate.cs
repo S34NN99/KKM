@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class StudentRequestUpdate : MonoBehaviour
 {
+    [SerializeField] private PyramidCalculator pc;
     [SerializeField] private List<StudentRequest> students;
     [SerializeField] private Plate plate;
 
@@ -20,6 +21,12 @@ public class StudentRequestUpdate : MonoBehaviour
 
     public void ShowNextStudent()
     {
+        if (pc.PlateCounterReached())
+        {
+            Debug.Log("Limit reached");
+            return;
+        }
+
         int temp = orderList[0];
         students[temp].gameObject.SetActive(true);
         Image handImage = students[temp].transform.Find("MainStudent/DairyOnHand").GetComponent<Image>();

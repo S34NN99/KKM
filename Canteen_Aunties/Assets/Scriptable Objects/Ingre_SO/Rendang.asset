@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Rendang
   m_EditorClassIdentifier: 
-  ingredientName: RENDANG
+  ingredientNameEnglish: 
+  ingredientName: {fileID: 11400000, guid: 843196d0a2c2d244bbcbc07bfce5b674, type: 2}
   sprite: {fileID: 21300000, guid: fb2e7975ee9b0734180eab5fb4443f89, type: 3}
   category: 2
   hasFats: 1
   additionalInfo: Has oils and fats
   weightage: 6
+  portionSize: 2
   ingredientTray: {fileID: 6940801374937530379, guid: eb5dc7883093fe14d906e077c8676247,
     type: 3}
   traySprite: {fileID: 21300000, guid: af6600f53bab09347831e4bcbe34c14b, type: 3}

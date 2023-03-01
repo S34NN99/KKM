@@ -80,7 +80,6 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator AddBooleanWithDelayCoroutine(string state)
     {
-        Debug.Log($"Set boolean {state} to true");
         yield return new WaitForSeconds(1f);
         SetBoolean(state, 1);
     }

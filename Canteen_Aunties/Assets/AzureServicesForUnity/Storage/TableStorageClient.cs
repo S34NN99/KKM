@@ -28,7 +28,7 @@ namespace AzureServicesForUnity.Shared
 
         [HideInInspector]
         public string SASToken;
-        private string sasToken = "?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-02-28T01:19:32Z&st=2023-02-08T17:19:32Z&spr=https&sig=lbV1QiN9Y0coLd%2FhKGO1phrwtV1XhcX9ILBVx4j8Bn8%3D";
+        private string sasToken = "?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-03-31T15:54:50Z&st=2023-02-28T07:54:50Z&spr=https&sig=45cyp3q5Q8vvY7%2B7TTkx05qPJ3ovjZ6%2Bg0qxFmUN6UU%3D";
 
         [HideInInspector]
         public EndpointStorageType EndpointStorageType = EndpointStorageType.TableStorage;

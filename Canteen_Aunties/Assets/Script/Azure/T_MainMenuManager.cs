@@ -3,6 +3,8 @@ using UnityEngine;
 using System;
 using AzureServicesForUnity.Shared;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using System.Collections.Generic;
 
 public class T_MainMenuManager : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class T_MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject studentInfoPrefab;
     [SerializeField] private TableStorageClient azureScript;
     [SerializeField] private GameObject toBeParent;
-    [SerializeField] private TMP_InputField codeToBeSearch;
+    [SerializeField] private RectTransform rt;
 
     private TableStorageClient client;
     public Action<User> DisplayUser;
@@ -22,12 +24,19 @@ public class T_MainMenuManager : MonoBehaviour
             GameObject newGo = Instantiate(studentInfoPrefab, toBeParent.transform);
             StudentInfoUIScript studentUIscript = newGo.GetComponent<StudentInfoUIScript>();
 
-            studentUIscript.schoolText.text = user.RowKey;
-            studentUIscript.nameText.text = user.PartitionKey;
+            studentUIscript.StudentName = user.PartitionKey;
+            studentUIscript.schoolCode = user.RowKey;
+            newGo.name = studentUIscript.StudentName;
+            ResizeRect();
         };
 
         client = FindObjectOfType<TableStorageClient>();
         GetStudentData();
+    }
+
+    public void ResizeRect()
+    {
+        rt.sizeDelta = new Vector2(rt.sizeDelta.x, toBeParent.transform.childCount * 70);
     }
 
     public void GetStudentData()

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Cabbage Carrot
   m_EditorClassIdentifier: 
-  ingredientName: CABBAGE AND CARROT
+  ingredientNameEnglish: 
+  ingredientName: {fileID: 11400000, guid: 25f696f241aa54a4ca240670de839890, type: 2}
   sprite: {fileID: 21300000, guid: 7800c9436bb6fab469adfb1da24c1838, type: 3}
   category: 4
   hasFats: 0
   additionalInfo: No oils and fats
   weightage: 6
+  portionSize: 3
   ingredientTray: {fileID: 7312816437842166918, guid: d44199bbacbe4d8488412daebe6c8bd0,
     type: 3}
   traySprite: {fileID: 21300000, guid: 783052a994599114ead04fc1e435c4a5, type: 3}

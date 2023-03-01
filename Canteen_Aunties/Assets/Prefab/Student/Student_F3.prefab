@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3479507616312685003, guid: 77d531dac3b0ba44fb1752ca7f9efab7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 938.8917
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479507616312685003, guid: 77d531dac3b0ba44fb1752ca7f9efab7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1048.1938
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479507616312685003, guid: 77d531dac3b0ba44fb1752ca7f9efab7,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -3.7233887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479507616312685003, guid: 77d531dac3b0ba44fb1752ca7f9efab7,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 2.718048
+      objectReference: {fileID: 0}
     - target: {fileID: 4216820744489426080, guid: 77d531dac3b0ba44fb1752ca7f9efab7,
         type: 3}
       propertyPath: m_Sprite

@@ -37,6 +37,8 @@ public class PlateServed
     public PlateServed(Dictionary<Category, WeightageScoring> dish)
     {
         //Check if dish is good or not
+
+
         plateEvaluation = ReviewPlate(dish);
         if (plateEvaluation == PlateEvaluation.Perfect)
             GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServeHealthyFood);
@@ -87,10 +89,13 @@ public class PyramidCalculator : MonoBehaviour
     public Dictionary<Category, WeightageScoring> CurrentWeightageScore
     { 
         get { return currentWeightage; }
-        private set { currentWeightage = value; }
+        private set 
+        { 
+            currentWeightage = value; 
+        }
     }
 
-    [SerializeField] private int TargetAmountForPlateServe;
+    [HideInInspector] public int TargetAmountForPlateServe;
     private int currentAmountServed = 0;
     public int CurrentAmountServed
     {
@@ -98,7 +103,7 @@ public class PyramidCalculator : MonoBehaviour
         set
         {
             currentAmountServed = value;
-            if (currentAmountServed >= TargetAmountForPlateServe)
+            if (PlateCounterReached())
             {
                 OnGameEnd?.Invoke();
             }
@@ -113,8 +118,10 @@ public class PyramidCalculator : MonoBehaviour
     [SerializeField] private StudentRequestUpdate studentRequestUpdate;
     [SerializeField] private StatisticTracker st;
     [SerializeField] private GameObject endGameScene;
+    [SerializeField] private Plate plate;
 
     public Action OnGameEnd;
+    public Action OnGameEndAfterCoroutine;
     public Action OnServePlate;
 
     [Header("Tutorial")]
@@ -127,23 +134,37 @@ public class PyramidCalculator : MonoBehaviour
         CurrentAmountServed = 0;
 
         OnServePlate += () => plateServedTracker.Add(new PlateServed(CurrentWeightageScore));
+        OnServePlate += () => EvaluatePlateWithMilk(CurrentWeightageScore);
+        OnServePlate += () => EvaluatePlateWithoutMilk(CurrentWeightageScore);
+        OnServePlate += () => EvaluateGreenBarsPerPlate(CurrentWeightageScore);
+
+        OnServePlate += plate.ResetTimer;
         OnServePlate += ResetWeightage;
         OnServePlate += () => CurrentAmountServed++;
 
-        OnGameEnd += () => st.AddToStatisticDictionary(st.Healthy_Students, AmountOfGoodPlates());
-        OnGameEnd += () => st.AddToStatisticDictionary(st.Meal_Requirement, AmountOfGoodPlates());
-        OnGameEnd += () => st.AddToStatisticDictionary(st.Student_Preferences, FindObjectOfType<Plate>().SuccessfulServingCounter);
-        OnGameEnd += () => st.PeformStarCalculations(TargetAmountForPlateServe);        
-        OnGameEnd += st.UpdateStatsToDatabase;
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.SessionPlayed, 1);
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.NumberOfCompleteHealtyPlateWithoutDairy, plate.HealtyMealWithoutMilk);
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.NumberOfCompleteHealtyPlateWithDairy, plate.HealtyMealWithMilk);
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.AverageImprovementOfFullyHealthyPlate, AmountOfGoodPlates());
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.NumberOfPlatesDiscard, plate.NumberOfPlatesDiscarded);
+
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.Healthy_Students, AmountOfGoodPlates());
+        OnGameEndAfterCoroutine += () => st.AddToStatisticDictionary(st.Student_Preferences, plate.SuccessfulServingRequestCounter);
+        OnGameEndAfterCoroutine += () => st.PeformStarCalculations(TargetAmountForPlateServe);
         OnGameEnd += () => StartCoroutine(OpenEndGameScene());
 
-        //OnGameEnd += () => FindObjectOfType<PauseManager>().Pause();
+        if (!isTutorial)
+        {
+            OnGameEnd += () => st.RecordTime(false);
+            OnGameEndAfterCoroutine += st.UpdateStatsToDatabase;
+        }
     }
 
     private IEnumerator OpenEndGameScene()
     {
-        studentRequestUpdate.gameObject.SetActive(false);
+        //studentRequestUpdate.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
+        OnGameEndAfterCoroutine?.Invoke();
         endGameScene.SetActive(true);
         GeneralEventManager.Instance.BroadcastEvent(AudioManager.ResultScreenPlayed);
         FindObjectOfType<PauseManager>().Pause();
@@ -239,6 +260,11 @@ public class PyramidCalculator : MonoBehaviour
     [SerializeField] private Text trackerText;
     [SerializeField] private Animator trackerAnimator;
 
+    public bool PlateCounterReached()
+    {
+        return currentAmountServed >= TargetAmountForPlateServe;
+    }
+
     public void ResetWeightage()
     {
         CurrentWeightageScore = new Dictionary<Category, WeightageScoring>()
@@ -265,8 +291,50 @@ public class PyramidCalculator : MonoBehaviour
         return counter;
     }
 
+
+    private void EvaluatePlateWithoutMilk(Dictionary<Category, WeightageScoring> dish)
+    {
+        foreach (var dictionary in dish)
+        {
+            if (dictionary.Key == Category.Dairy)
+                continue;
+
+            if (dictionary.Value.Review != ReviewResponses.Green)
+                return;
+        }
+
+        FindObjectOfType<Plate>().HealtyMealWithoutMilk++;
+        plate.startRecordTimeForPlate = false;
+        st.AddToStatisticDictionary(st.AverageDurationToCompleteAHealthyPlateWithoutDairy, plate.DurationForAHealthyMeal);
+    }
+
+    private void EvaluatePlateWithMilk(Dictionary<Category, WeightageScoring> dish)
+    {
+        foreach (var dictionary in dish)
+        {
+            if (dictionary.Value.Review != ReviewResponses.Green)
+                return;
+        }
+
+        FindObjectOfType<Plate>().HealtyMealWithMilk++;
+        plate.startRecordTimeForPlate = false;
+        st.AddToStatisticDictionary(st.AverageDurationToCompleteAHealthyPlateWithDairy, plate.DurationForAHealthyMeal);
+    }
+
+    private void EvaluateGreenBarsPerPlate(Dictionary<Category, WeightageScoring> dish)
+    {
+        int counter = 0;
+        foreach(var dictionary in dish)
+        {
+            if (dictionary.Value.Review == ReviewResponses.Green)
+                counter++;
+        }
+
+        st.AddToStatisticDictionary(st.AverageGreenBarsPerPlate, counter);
+    }
+
     #endregion
 
 
-    
+
 }

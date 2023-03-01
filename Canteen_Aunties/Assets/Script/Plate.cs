@@ -29,7 +29,14 @@ public class Plate : MonoBehaviour
     private int currentWeightage = 0;
     private int maxWeightage = 48;
 
-    public int SuccessfulServingCounter;
+    public int SuccessfulServingRequestCounter;
+    public int HealtyMealWithoutMilk;
+    public int HealtyMealWithMilk;
+    public int NumberOfPlatesDiscarded;
+    public float DurationForAHealthyMeal;
+
+    [HideInInspector] public bool startRecordTimeForPlate;
+
 
     public Action<Ingredient> OnAddIngredient;
     public Action<Ingredient> OnGiveDairy;
@@ -73,6 +80,11 @@ public class Plate : MonoBehaviour
             studentHand.enabled = true;
             studentHand.sprite = ingredient.Sprite;
             studentHand.GetComponent<RectTransform>().sizeDelta = new Vector2(ingredient.Sprite.rect.width, ingredient.Sprite.rect.height);
+            
+            if (studentRequest.CheckIngredientRequested(ingredient))
+            {
+                studentRequest.UpdateRequestTick(true);
+            }
         };
 
         OnGiveDairy += (ingredient) => ingredientList.Add(ingredient);
@@ -98,6 +110,21 @@ public class Plate : MonoBehaviour
         OnStudentServed += () => studentRequest.StudentAnimator.SetTrigger("NextStudent");
         OnStudentServed += studentRequestUpdate.ShowNextStudent;
         OnStudentServed += () => GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServingFood);
+    }
+
+    private void Update()
+    {
+        if(startRecordTimeForPlate)
+        {
+            DurationForAHealthyMeal += Time.deltaTime;
+        }
+    }
+
+    public void ResetTimer()
+    {
+        DurationForAHealthyMeal = 0;
+        startRecordTimeForPlate = true;
+        Debug.Log("Reseting timer");
     }
 
     public void DisablePlateFullAnimation()
@@ -132,13 +159,14 @@ public class Plate : MonoBehaviour
         }
     }
 
+    #region input system
     public void ServePlate(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             animator.SetBool("Boolean", false);
-            OnStudentServed?.Invoke();
             calculator.OnServePlate?.Invoke();
+            OnStudentServed?.Invoke();
 
             foreach (SpriteRenderer sr in placeholders)
             {
@@ -171,6 +199,9 @@ public class Plate : MonoBehaviour
                 sr.sprite = null;
             }
 
+            NumberOfPlatesDiscarded++;
+            studentRequest.UpdateRequestTick(false);
+            studentHand.enabled = false;
             currentWeightage = 0;
             ingredientList.Clear();
             calculator.ResetWeightage();
@@ -195,6 +226,7 @@ public class Plate : MonoBehaviour
             resultText.text = "Emptied Plate";
         }
     }
+    #endregion
 
     public void ChangeStudentRequest(StudentRequest sr, Image image)
     {

@@ -50,6 +50,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void AdjustVolume()
+    {
+        float volume = PlayerPrefs.GetInt("Volume", 1);
+
+        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+        foreach(var audioSource in audioSources)
+        {
+            audioSource.volume = volume;
+        }
+    }
+
     public static void ToggleBgm()
     {
         float volume = PlayerPrefs.GetFloat("Bgm_Volume", 1);
@@ -74,6 +85,18 @@ public class AudioManager : MonoBehaviour
         {
             SetSfxVolume(1);
         }
+    }
+
+    public void TurnOnVolume()
+    {
+        PlayerPrefs.SetInt("Volume", 1);
+        AdjustVolume();
+    }
+
+    public void TurnOffVolume()
+    {
+        PlayerPrefs.SetInt("Volume", 0);
+        AdjustVolume();
     }
 
     public const string OnButtonPressed = "OnButtonPressed";
@@ -107,6 +130,7 @@ public class AudioManager : MonoBehaviour
     public const string OnMainMenuBG = "OnMainMenuBG";
 
     [SerializeField] private bool isGameScene;
+    [SerializeField] private bool isMainMenu;
 
     [Header("Clips")]
     [Space()]
@@ -305,6 +329,22 @@ public class AudioManager : MonoBehaviour
         else
         {
             GeneralEventManager.Instance.BroadcastEvent(OnMainMenuBG);
+        }
+
+        AdjustVolume();
+    }
+
+    private void Update()
+    {
+        if(Input.anyKeyDown && !isMainMenu)
+        {
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
+                || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)
+                || Input.GetMouseButton(0) || Input.GetMouseButton(1))
+                return;
+
+            BroadCastEvent(OnRandomButtonPresses);
+            Debug.Log("wrong action key anykeydown");
         }
     }
 

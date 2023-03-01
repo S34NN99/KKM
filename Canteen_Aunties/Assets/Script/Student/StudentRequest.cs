@@ -7,7 +7,8 @@ public class StudentRequest : MonoBehaviour
 {
     private Animator animator => GetComponentInChildren<Animator>();
     public Animator StudentAnimator => animator;
-    [SerializeField] private Menu menu;
+    private Menu menu;
+
     [SerializeField] private Image ingredientRequestedImage;
     [SerializeField] private Image requestedIngredientTick;
     [SerializeField] private RectTransform ingredientRect;
@@ -18,6 +19,7 @@ public class StudentRequest : MonoBehaviour
     {
         menu = FindObjectOfType<Menu>();
         UpdateRequest();
+        UpdateRequestTick(false);
     }
     
     private Ingredient RandomNextStudentRequest()
@@ -44,6 +46,8 @@ public class StudentRequest : MonoBehaviour
         ingredientRect.sizeDelta = new Vector2(currentRequestedIngredient.Sprite.rect.width, currentRequestedIngredient.Sprite.rect.height);
     }
 
+
+
     public void UpdateRequestTick(bool power)
     {
         requestedIngredientTick.gameObject.SetActive(power);
@@ -63,8 +67,7 @@ public class StudentRequest : MonoBehaviour
     {
         if(CheckRequestRequirement(listOfIngredients))
         {
-            Debug.Log("Successful");
-            FindObjectOfType<Plate>().SuccessfulServingCounter++;
+            FindObjectOfType<Plate>().SuccessfulServingRequestCounter++;
             GeneralEventManager.Instance.BroadcastEvent(AudioManager.OnServeStudentPreference);
         }
     }

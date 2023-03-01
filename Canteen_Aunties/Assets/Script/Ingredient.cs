@@ -10,8 +10,9 @@ public enum Category
 [CreateAssetMenu(fileName = "IngredientData", menuName = "ScriptableObjects/IngredientData", order = 0)]
 public class Ingredient : ScriptableObject
 {
-    [SerializeField] private string ingredientName;
-    public string IngredientName => ingredientName;
+    [SerializeField] private Translation ingredientName;
+    public Translation IngredientName => ingredientName;
+
     [SerializeField] private Sprite sprite;
     public Sprite Sprite => sprite;
 
@@ -26,6 +27,9 @@ public class Ingredient : ScriptableObject
 
     [SerializeField] private int weightage;
     public int Weightage => weightage;
+
+    [SerializeField] private int portionSize;
+    public int PortionSize => portionSize;
 
     [SerializeField] private GameObject ingredientTray;
     public GameObject IngredientTray => ingredientTray;

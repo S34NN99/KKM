@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Yogurt
   m_EditorClassIdentifier: 
-  ingredientName: YOGURT
+  ingredientNameEnglish: 
+  ingredientName: {fileID: 11400000, guid: 82cf039e35b90fe4ca04d9072d73e0c1, type: 2}
   sprite: {fileID: 21300000, guid: 4efa6bb2f3f87b04bbfc2481c7f0fd6d, type: 3}
   category: 1
   hasFats: 0
   additionalInfo: No oils and fats
   weightage: 6
+  portionSize: 1
   ingredientTray: {fileID: 2247665563530687613, guid: d0bd8d3b4a6701e4aa5932e026933657,
     type: 3}
   traySprite: {fileID: 21300000, guid: 9a8776226ea2c8d44845e7bca61d1186, type: 3}

@@ -1,13 +1,18 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class InspectUIScript : MonoBehaviour
 {
-    public TextMeshProUGUI FinishedMoreThan3Stars;
-    public TextMeshProUGUI NumberOf5tars;
-    public TextMeshProUGUI HealthyStudents;
-    public TextMeshProUGUI PrincipalRecommendations;
-    public TextMeshProUGUI HealthInspector;
+    public Text studentName;
+    public Text sessionPlayed;
+    public Text avgDurationOfGamePlay;
+    public Text completedHealthyPlateWithDairy;
+    public Text completedHealthyPlateWithoutDairy;
+    public Text avgDurationToCompleteWithoutDairy;
+    public Text avgDurationToCompleteWithDairy;
+    public Text avgImprovementOfHealthyPlate;
+    public Text avgGreenBarsPerPlate;
+    public Text numberOfPlatesDiscarded;
 
     [SerializeField] private GameObject inspectTab;
     public void OpenInspect()
