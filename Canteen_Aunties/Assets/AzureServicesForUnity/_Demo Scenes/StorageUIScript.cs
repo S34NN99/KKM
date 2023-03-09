@@ -233,12 +233,11 @@ public class StorageUIScript : MonoBehaviour
                     if (insertEntityResponse.Status == CallBackResult.Success)
                     {
                         string result = "User created";
-                        Debug.Log(result);
                         StatusText.text = result;
                     }
                     else
                     {
-                        ShowError(insertEntityResponse.Exception.Message);
+                        StatusText.text = "Please try again";
                     }
                 });
             }

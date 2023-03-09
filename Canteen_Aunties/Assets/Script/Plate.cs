@@ -214,7 +214,10 @@ public class Plate : MonoBehaviour
         if (context.performed)
         {
             resultText.gameObject.SetActive(true);
-            resultText.text = "Plate Served";
+            if (!FindObjectOfType<TranslationManager>().IsPlayedInBM)
+                resultText.text = "Plate Served";
+            else
+                resultText.text = "Pinggan Dihidangkan";
         }
     }
 
@@ -223,7 +226,10 @@ public class Plate : MonoBehaviour
         if (context.performed)
         {
             resultText.gameObject.SetActive(true);
-            resultText.text = "Emptied Plate";
+            if (!FindObjectOfType<TranslationManager>().IsPlayedInBM)
+                resultText.text = "Emptied Plate";
+            else
+                resultText.text = "Pinggan Kosong";
         }
     }
     #endregion

@@ -131,6 +131,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private bool isGameScene;
     [SerializeField] private bool isMainMenu;
+    [SerializeField] private bool isLoginPage;
 
     [Header("Clips")]
     [Space()]
@@ -326,7 +327,7 @@ public class AudioManager : MonoBehaviour
             GeneralEventManager.Instance.BroadcastEvent(OnGameSceneBG);
             GeneralEventManager.Instance.BroadcastEvent(CanteenAmbient);
         }
-        else
+        else if(isMainMenu)
         {
             GeneralEventManager.Instance.BroadcastEvent(OnMainMenuBG);
         }

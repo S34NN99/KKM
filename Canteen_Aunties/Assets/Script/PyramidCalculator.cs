@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public enum ReviewResponses
 {
@@ -95,7 +96,7 @@ public class PyramidCalculator : MonoBehaviour
         }
     }
 
-    [HideInInspector] public int TargetAmountForPlateServe;
+    public int TargetAmountForPlateServe;
     private int currentAmountServed = 0;
     public int CurrentAmountServed
     {
@@ -106,6 +107,7 @@ public class PyramidCalculator : MonoBehaviour
             if (PlateCounterReached())
             {
                 OnGameEnd?.Invoke();
+                FindObjectOfType<PlayerInput>().enabled = false;
             }
 
             trackerAnimator.SetTrigger("IsChanged");

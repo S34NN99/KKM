@@ -24,6 +24,7 @@ public class T_MainMenuManager : MonoBehaviour
             GameObject newGo = Instantiate(studentInfoPrefab, toBeParent.transform);
             StudentInfoUIScript studentUIscript = newGo.GetComponent<StudentInfoUIScript>();
 
+
             studentUIscript.StudentName = user.PartitionKey;
             studentUIscript.schoolCode = user.RowKey;
             newGo.name = studentUIscript.StudentName;

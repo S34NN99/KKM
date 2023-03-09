@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: 92b1cbd3004bd3844ab0082709662b09, type: 2}
   sprite: {fileID: 21300000, guid: 766148cb1b7db084781453a102011a16, type: 3}
   category: 2
   hasFats: 0
   additionalInfo: No oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: 48e3e90db95d68743ae5ad1bfd648ce3, type: 2}
   weightage: 12
   portionSize: 1
   ingredientTray: {fileID: 7253015676423669369, guid: efc7b1002e0e6f44babd43eb176ec13f,

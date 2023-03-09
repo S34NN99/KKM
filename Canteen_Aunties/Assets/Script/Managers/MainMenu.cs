@@ -31,8 +31,8 @@ public class MainMenu : MonoBehaviour
 
     public void Exit()
     {
-        //Application.Quit();
         SceneManager.LoadScene("LandingScene");
+        if(AzureServicesForUnity.Shared.TableStorageClient.Instance.CurrentUser != null)
         AzureServicesForUnity.Shared.TableStorageClient.Instance.CurrentUser = null;
     }
 

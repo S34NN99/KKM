@@ -43,7 +43,8 @@ public class BlackBoard : MonoBehaviour
         image.sprite = bbIngredient.Ingredient.TraySprite;
         //category.text = bbIngredient.Ingredient.Category.ToString();
         weightage.text = "x" + bbIngredient.Ingredient.PortionSize.ToString();
-        additionalInfo.text = bbIngredient.Ingredient.AdditionalInfo;
+        additionalInfo.text = !FindObjectOfType<TranslationManager>().IsPlayedInBM ? bbIngredient.Ingredient.AddtionalInfoSO.EnglishText : bbIngredient.Ingredient.AddtionalInfoSO.MalayText;
+        //additionalInfo.text = bbIngredient.Ingredient.AdditionalInfo;
         foodBG.sprite = GetBGSprite(foodBGList, bbIngredient.Ingredient.Category);
         foodBGPostIt.sprite = GetBGSprite(foodBGPostItList, bbIngredient.Ingredient.Category);
 

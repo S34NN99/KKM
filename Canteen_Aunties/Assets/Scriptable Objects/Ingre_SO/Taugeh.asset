@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Taugeh
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: 1b03298aff0bb4f4eb46335129d05ca7, type: 2}
   sprite: {fileID: 21300000, guid: 2d354bf1b8759214f8719523b6c30aa2, type: 3}
   category: 4
   hasFats: 1
   additionalInfo: Has oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: c317fd4b5e369a34ca72d94b0f69d4c2, type: 2}
   weightage: 6
   portionSize: 2
   ingredientTray: {fileID: 212523968840524775, guid: 78df1918c00901148b4abc5b73a481a7,

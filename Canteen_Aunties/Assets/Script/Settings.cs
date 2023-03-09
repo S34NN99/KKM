@@ -19,7 +19,7 @@ public class Settings : MonoBehaviour
         Debug.Log("Checking");
 
         bool isMuted;
-        isMuted = PlayerPrefs.GetInt("Volume", 0) == 0 ? false : true;
+        isMuted = PlayerPrefs.GetInt("Volume", 1) == 0 ? false : true;
         musicOn.interactable = !isMuted;
         musicOff.interactable = isMuted;
     }

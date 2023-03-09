@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: BokChoy
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: 7acb30c1a0914f14c835515e13eb2827, type: 2}
   sprite: {fileID: 21300000, guid: b2fa6b80234b69b46afd1c9e075abd45, type: 3}
   category: 4
   hasFats: 1
   additionalInfo: Has oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: 48e3e90db95d68743ae5ad1bfd648ce3, type: 2}
   weightage: 6
   portionSize: 3
   ingredientTray: {fileID: 3574772377147091681, guid: 05ff605b50678674b83fcfe09cd447ac,

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Noodles
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: 54b3612b8bd663a4a861bc3a156a4e70, type: 2}
   sprite: {fileID: 21300000, guid: 5d9dcf68ddf03484a8434ed34a30e181, type: 3}
   category: 3
   hasFats: 0
   additionalInfo: No oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: 48e3e90db95d68743ae5ad1bfd648ce3, type: 2}
   weightage: 12
   portionSize: 1
   ingredientTray: {fileID: 6041907658588568516, guid: d08a08177e5b5cb4fa52428868b2e302,

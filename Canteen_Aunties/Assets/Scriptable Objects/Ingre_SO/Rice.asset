@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Rice
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: e987210ea29c3d94b90becde2ddd75fe, type: 2}
   sprite: {fileID: 21300000, guid: cfa38f940c942c6418ceac9a36997fdc, type: 3}
   category: 3
   hasFats: 0
   additionalInfo: No oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: 48e3e90db95d68743ae5ad1bfd648ce3, type: 2}
   weightage: 12
   portionSize: 1
   ingredientTray: {fileID: 6413560322608229800, guid: 131716de63b10ff47b881f65bd3a83b0,

@@ -678,6 +678,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: ChangeButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: CheckLanguage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &3448313211658629996
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +843,28 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_MethodName: ToMalay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: ChangeButtonUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: CheckLanguage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -993,6 +1037,7 @@ GameObject:
   - component: {fileID: 1040150967940562935}
   - component: {fileID: 7017392021636401234}
   - component: {fileID: 6884314924601535602}
+  - component: {fileID: 962608862609771768}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -1060,6 +1105,19 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: SETTINGS
+--- !u!114 &962608862609771768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242650288628346955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d632700f53fada4dad09a1f70e06358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationText: {fileID: 11400000, guid: daed76a4d52ae2442a1c6602a5c76971, type: 2}
 --- !u!1 &4250073667752936967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2804878819724829281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1196,6 +1254,7 @@ GameObject:
   - component: {fileID: 2248030487795540403}
   - component: {fileID: 6510426264551880701}
   - component: {fileID: 2961992381477417033}
+  - component: {fileID: 7506388364004116294}
   m_Layer: 5
   m_Name: Language
   m_TagString: Untagged
@@ -1263,6 +1322,19 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: LANGUAGE
+--- !u!114 &7506388364004116294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237670470725226376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d632700f53fada4dad09a1f70e06358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationText: {fileID: 11400000, guid: cd80e22f7a976c54a84708fdf70e455c, type: 2}
 --- !u!1 &7647923491429360294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1346,7 @@ GameObject:
   - component: {fileID: 47615874669464742}
   - component: {fileID: 4757841217103340436}
   - component: {fileID: 3646786129080362144}
+  - component: {fileID: 3728424290973706896}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -1341,6 +1414,19 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: MUSIC
+--- !u!114 &3728424290973706896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647923491429360294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d632700f53fada4dad09a1f70e06358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationText: {fileID: 11400000, guid: 7631cc2230767c342a936868cf3cf0d1, type: 2}
 --- !u!1 &8022879212256329703
 GameObject:
   m_ObjectHideFlags: 0

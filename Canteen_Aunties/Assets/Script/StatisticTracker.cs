@@ -298,9 +298,14 @@ public class StatisticTracker : MonoBehaviour
         stats.AverageImprovementOfFullyHealthyPlate = (int)(dict[AverageImprovementOfFullyHealthyPlate] + stats.AverageImprovementOfFullyHealthyPlate) / stats.SessionPlayed;
         stats.AverageDurationOfGamePlayPerEntry = (int)(dict[AverageDurationOfGamePlayPerEntry] + levelTimer) / stats.SessionPlayed;
         stats.NumberOfPlatesDiscard += (int)dict[NumberOfPlatesDiscard];
-        stats.AverageDurationToCompleteAHealthyPlateWithDairy = (int)(dict[AverageDurationToCompleteAHealthyPlateWithDairy] + stats.AverageDurationToCompleteAHealthyPlateWithDairy) / stats.NumberOfCompleteHealthyPlateWithDairy;
-        stats.AverageDurationToCompleteAHealthyPlateWithoutDairy = (int)(dict[AverageDurationToCompleteAHealthyPlateWithoutDairy] + stats.NumberOfCompleteHealthyPlateWithoutDairy) / stats.NumberOfCompleteHealthyPlateWithoutDairy;
         stats.AverageGreenBarsPerPlate = (dict[AverageGreenBarsPerPlate] + stats.AverageGreenBarsPerPlate) / (stats.SessionPlayed * FindObjectOfType<PyramidCalculator>().TargetAmountForPlateServe);
+
+        if(stats.NumberOfCompleteHealthyPlateWithDairy > 0)
+            stats.AverageDurationToCompleteAHealthyPlateWithDairy = (int)(dict[AverageDurationToCompleteAHealthyPlateWithDairy] + stats.AverageDurationToCompleteAHealthyPlateWithDairy) / stats.NumberOfCompleteHealthyPlateWithDairy;
+       
+        if (stats.NumberOfCompleteHealthyPlateWithoutDairy > 0)
+            stats.AverageDurationToCompleteAHealthyPlateWithoutDairy = (int)(dict[AverageDurationToCompleteAHealthyPlateWithoutDairy] + stats.NumberOfCompleteHealthyPlateWithoutDairy) / stats.NumberOfCompleteHealthyPlateWithoutDairy;
+
     }
     #endregion
 }

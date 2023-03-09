@@ -25,6 +25,9 @@ public class Ingredient : ScriptableObject
     [SerializeField] private string additionalInfo;
     public string AdditionalInfo => additionalInfo;
 
+    [SerializeField] private Translation additionalInfoSO;
+    public Translation AddtionalInfoSO => additionalInfoSO;
+
     [SerializeField] private int weightage;
     public int Weightage => weightage;
 

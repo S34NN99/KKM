@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Tofu
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: c2f7622f24ee159448be25f1996d40e2, type: 2}
   sprite: {fileID: 21300000, guid: b55f64a69cd992e4693acd15301664e0, type: 3}
   category: 2
   hasFats: 0
   additionalInfo: No oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: 48e3e90db95d68743ae5ad1bfd648ce3, type: 2}
   weightage: 6
   portionSize: 2
   ingredientTray: {fileID: 6046788870180043165, guid: c81091711c6554b49a5cd3183d629863,

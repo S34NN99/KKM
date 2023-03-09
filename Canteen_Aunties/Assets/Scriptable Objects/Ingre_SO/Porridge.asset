@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a777c8f85eaac2469bb8461ae177ddb, type: 3}
   m_Name: Porridge
   m_EditorClassIdentifier: 
-  ingredientNameEnglish: 
   ingredientName: {fileID: 11400000, guid: e96c6dfcffa0f2b4d833dadcfc533c93, type: 2}
   sprite: {fileID: 21300000, guid: 46ac3903f1ae047469268ae2936f3954, type: 3}
   category: 3
   hasFats: 0
   additionalInfo: No oils and fats
+  additionalInfoSO: {fileID: 11400000, guid: 48e3e90db95d68743ae5ad1bfd648ce3, type: 2}
   weightage: 6
   portionSize: 2
   ingredientTray: {fileID: 6471929004247042642, guid: 99d921e81bd096b48bfcbe70491d7dba,
